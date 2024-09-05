@@ -1,0 +1,58 @@
+.wrapper {
+  width: 900px;
+  margin: auto;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+section {
+  padding-top: 1.5rem;
+}
+
+.nav-bar {
+  width: 30%;
+  margin: auto;
+  text-transform: uppercase;
+}
+
+.nav-bar ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.nav-link a {
+  text-decoration: none;
+}
+
+.nav-link a:hover {
+  text-decoration: underline;
+}
+
+.menu {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.contact-us {
+  padding-bottom: 1.5rem;
+}
+
+.disclaimer {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-size: 0.75rem;
+}

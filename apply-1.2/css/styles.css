@@ -1,0 +1,21 @@
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+h1 {
+  font-size: 36px;
+  color: #00008b;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+a {
+  color: #ff0000;
+}
+
+a:hover {
+  color: #0000ff;
+}
