@@ -1,4 +1,102 @@
 .wrapper {
-  width: 900px;
+  width: 80%;
   margin: auto;
+  border: 2px solid purple;
+  background-color: rgba(0, 0, 0, 0.889);
+  border-radius: 5px;
+  padding: 0;
+}
+
+.btn-container {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 0.5rem 2.5rem;
+  border-radius: 5px;
+  background-color: purple;
+  font-size: 1rem;
+  color: rgb(111, 230, 82);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+h1 {
+  color: purple;
+  text-align: center;
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: small;
+}
+header {
+  background-color: rgb(111, 230, 82);
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.nav-bar {
+  width: 35%;
+  margin: auto;
+  padding-bottom: 0.5rem;
+}
+
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+}
+
+.nav-bar li a {
+  text-decoration: none;
+  color: purple;
+}
+
+footer {
+  background-color: rgb(111, 230, 82);
+  padding: 1.5rem 0;
+}
+
+.content {
+  width: 70%;
+  margin: auto;
+  color: rgb(111, 230, 82);
+}
+
+h2 {
+  color: #fff;
+}
+
+.content li a {
+  color: #fff;
+}
+
+.table-section {
+  width: 70%;
+  margin: auto;
+  padding: 1.5rem 0;
+}
+
+table {
+  color: #fff;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid rgb(111, 230, 82);
+}
+
+thead {
+  color: purple;
+  font-weight: bold;
 }

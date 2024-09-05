@@ -1,4 +1,101 @@
 .wrapper {
-  width: 900px;
+  width: 80%;
   margin: auto;
+  border: 2px solid rgb(248, 3, 3);
+  background-color: rgb(19, 19, 19);
+  border-radius: 5px;
+}
+
+.btn-container {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 0.5rem 2.5rem;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: orangered;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: small;
+  color: #fff;
+}
+
+header {
+  background-color: orangered;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.nav-bar {
+  width: 35%;
+  margin: auto;
+  padding-bottom: 0.5rem;
+}
+
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+}
+
+.nav-bar li a {
+  text-decoration: none;
+  color: black;
+}
+
+footer {
+  background-color: orangered;
+  padding: 1.5rem 0;
+  color: #fff;
+}
+
+.content {
+  width: 70%;
+  margin: auto;
+  color: #fff;
+}
+
+.content li a {
+  color: orangered;
+}
+
+h2 {
+  color: orangered;
+}
+
+.table-section {
+  width: 70%;
+  margin: auto;
+  padding: 1.5rem 0;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid orangered;
+}
+
+thead {
+  color: orangered;
+  font-weight: bold;
 }

@@ -5,24 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
+    <script type="module" src="./js/main.js"></script>
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style1.css" />
-    <link rel="stylesheet" href="css/style2.css" />
-    <link rel="stylesheet" href="css/style3.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/modern-reset.css" />
+    <link id="style-sheet" rel="stylesheet" href="" />
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <h1>1.2: Building Dynamic Webpages with CSS</h1>
+        <h1>Building Dynamic Webpages with CSS</h1>
+        <nav class="nav-bar">
+          <ul>
+            <li class="nav-link"><a href="#">About</a></li>
+            <li class="nav-link"><a href="#">Contact Us</a></li>
+          </ul>
+        </nav>
       </header>
       <main>
-        <div>
-          <button>Style 1</button>
-          <button>Style 2</button>
-          <button>Style 3</button>
-        </div>
+        <section>
+          <div class="btn-container">
+            <button class="btn btn-style-one">Style 1</button>
+            <button class="btn btn-style-two">Style 2</button>
+            <button class="btn btn-style-three">Style 3</button>
+          </div>
+        </section>
+
+        <section>
+          <div class="content">
+            <h2>HTML Elements</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+              ab numquam, eos modi veniam impedit autem, dolore sequi explicabo
+              nesciunt velit quibusdam asperiores vitae nisi necessitatibus
+              pariatur amet ipsum similique.
+            </p>
+            <ul>
+              <li><a href="#">Headings</a></li>
+              <li><a href="#">Paragraphs</a></li>
+              <li><a href="#">Links</a></li>
+              <li><a href="#">Tables</a></li>
+            </ul>
+          </div>
+          <div class="table-section">
+            <table>
+              <thead>
+                <tr>
+                  <td>Element</td>
+                  <td>Description</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Headings</td>
+                  <td>
+                    HTML headings are titles or subtitles that you want to
+                    display on a webpage.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Paragraphs</td>
+                  <td>
+                    The HTML paragraph element defines a paragraph. A paragraph
+                    always starts on a new line, and browsers automatically add
+                    some white space (a margin) before and after a paragraph.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Links</td>
+                  <td>
+                    HTML links are hyperlinks. You can click on a link and jump
+                    to another document. When you move the mouse over a link,
+                    the mouse arrow will turn into a little hand.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tables</td>
+                  <td>
+                    HTML tables allow web developers to arrange data into rows
+                    and columns.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </main>
-      <footer></footer>
+      <footer>
+        <div class="disclaimer">
+          <p>&copy; 2024 Manuel Alva.</p>
+          <p>This wbsite is for educational purposes only</p>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
