@@ -1,0 +1,183 @@
+:root {
+  --black: #181818;
+  --white: #fff;
+  --light-gray: #e9e9e9;
+  --mid-gray: #ddd;
+  --dark-navy: #031a62;
+  --orange: #ff8700;
+  --purple: #6a4cd7;
+  --pink: #ff003a;
+  --blue: #00a3ff;
+}
+
+.header-content {
+  width: 90%;
+  margin: auto;
+}
+
+.announcements {
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 5px 0;
+}
+
+.header-content {
+  background-color: var(--white);
+}
+
+nav {
+  width: 60%;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Monoton", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 27px;
+  line-height: 55px;
+  margin-bottom: -10px;
+}
+.search-container {
+  width: 20%;
+}
+
+.header-logo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* logo Animation */
+.logo-container {
+  text-align: right;
+  width: 25%;
+  animation-name: example;
+  animation-duration: 5s;
+}
+
+@keyframes example {
+  0% {
+    color: var(--orange);
+  }
+  25% {
+    color: var(--purple);
+  }
+  50% {
+    color: var(--blue);
+  }
+  100% {
+    color: var(--pink);
+  }
+}
+
+/*End Logo Animation */
+.logo-container span {
+  font-size: 35px;
+}
+
+.logo-container p {
+  text-align: end;
+  border-top: 1px solid var(--black);
+  margin-top: -5px;
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 21px;
+  width: 50%;
+  display: inline-block;
+}
+
+.icons {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: end;
+}
+
+.shopping-cart {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 12px;
+  background-color: transparent;
+  border: none;
+  padding-left: 0.5rem;
+}
+
+.shopping-cart svg {
+  width: 15px;
+}
+
+/* Shopping Cart flip animation */
+.flip-card {
+  background-color: transparent;
+  width: 125px;
+  perspective: 1000px;
+  border: 2px solid var(--mid-gray);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.flip-card-back {
+  background-color: var(--black);
+  transform: rotateX(180deg);
+}
+
+.flip-card-back button {
+  color: var(--white);
+}
+
+.flip-card-back svg {
+  stroke: var(--white);
+}
+/* End Shopping Cart flip Animation */
+
+svg {
+  stroke: var(--black);
+  width: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.menu li a {
+  text-decoration: none;
+}
