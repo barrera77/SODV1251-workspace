@@ -9,6 +9,7 @@
 .wrapper {
   width: 95%;
   margin: auto;
+  font-family: "Poppins", sans-serif;
 }
 
 /* header & nav */
@@ -73,6 +74,10 @@ h1 {
 .login a:hover {
   color: var(--orange);
   text-decoration: underline;
+}
+
+.submenu {
+  display: none;
 }
 
 .search-container {
@@ -160,6 +165,11 @@ h1 {
   padding: 2rem 0;
   color: var(--dark-navy);
 }
+
+.row p {
+  font-size: 14px;
+}
+
 .row {
   padding-top: 1rem;
 }
@@ -223,11 +233,11 @@ h1 {
 }
 
 .discounts-description h2 {
-  font-size: 1.5rem;
+  font-size: 21px;
 }
 
 .discounts-description p {
-  font-size: 14px;
+  font-size: 11px;
 }
 
 .discounts-coupon {
@@ -242,6 +252,7 @@ h1 {
   background-color: var(--orange);
   color: var(--white);
   cursor: pointer;
+  font-size: 11px;
 }
 
 .discounts-coupon button:hover {
@@ -251,10 +262,16 @@ h1 {
 
 /* contact form */
 .contact-row {
-  width: 70%;
+  width: 60%;
   margin: auto;
-  padding-top: 1rem;
+  padding: 1rem;
 }
+
+.contact-row-wrapper {
+  border: 1px solid var(--mid-gray);
+  border-radius: 8px;
+}
+
 .form-content {
   padding-top: 1rem;
   display: flex;
@@ -266,6 +283,16 @@ h1 {
 .form-content textarea {
   border-radius: 5px;
   border: 1px solid var(--mid-gray);
+  padding-left: 0.5rem;
+}
+
+.form-content h2 {
+  font-size: 21px;
+}
+
+.form-content input,
+.form-content textarea {
+  font-size: 12px;
 }
 
 .name {
@@ -276,6 +303,22 @@ h1 {
 
 .name input {
   width: calc(50% - 0.5rem);
+}
+
+.form-content button {
+  padding: 0.25rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--orange);
+  background-color: var(--dark-navy);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.form-content button:hover {
+  color: var(--white);
+  background-color: var(--orange);
+  border-color: var(--dark-navy);
 }
 
 /* footer */
@@ -335,6 +378,18 @@ footer {
     border-bottom: 2px solid var(--dark-navy);
     font-size: 20px;
   }
+
+  .menu > li:hover .submenu {
+    display: block;
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0%);
+    transition-delay: 0.5s, 0.5s, 0.3s;
+  }
+
+  .submenu {
+    width: 50%;
+  }
 }
 
 @media screen and (min-width: 1190px) {
@@ -359,6 +414,30 @@ footer {
     border: none;
     padding: 0;
     width: auto;
+  }
+
+  .submenu {
+    width: max-content;
+    display: none;
+    background-color: var(--light-gray);
+    opacity: 0;
+    position: absolute;
+    transform: translateY(-2em);
+    z-index: -1;
+    transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
+      z-index 0s linear 0.01s;
+  }
+
+  .submenu li a {
+    padding: 1rem 1.5rem;
+  }
+
+  .menu > li:hover .submenu {
+    display: block;
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0%);
+    transition-delay: 0.5s, 0.5s, 0.3s;
   }
 
   .logo-container {
@@ -401,6 +480,14 @@ footer {
     align-items: center;
   }
 
+  .banner h2 {
+    font-size: 35px;
+  }
+
+  .banner p {
+    font-size: 1rem;
+  }
+
   .card {
     flex: 1 1 calc((100% / 6) - 1rem);
   }
@@ -417,10 +504,30 @@ footer {
     padding-left: 3rem;
   }
 
+  .discounts-coupon button {
+    font-size: 1rem;
+  }
+
   .social-media li {
     width: 40px;
   }
   .contact-row {
-    width: 50%;
+    width: 40%;
+  }
+
+  .contact-row input,
+  .contact-row textarea,
+  .contact-row button,
+  .contact-row p {
+    font-size: 1rem;
+  }
+
+  .contact-row h2 {
+    font-size: 40px;
+  }
+
+  .footer-content {
+    width: 45%;
+    margin: auto;
   }
 }
