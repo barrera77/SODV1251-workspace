@@ -6,20 +6,28 @@
     <title>Restaurants</title>
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/modern-reset.css" />
     <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>The Last Supper</h1>
-        <nav class="nav-bar">
-          <ul>
-            <li class="nav-link"><a href="#">Menu</a></li>
-            <li class="nav-link"><a href="#">Contact Us</a></li>
-          </ul>
-        </nav>
-      </header>
-      <main>
+    <header>
+      <h1>The Last Supper</h1>
+      <nav class="nav-bar">
+        <ul>
+          <li class="nav-link"><a href="#">Menu</a></li>
+          <li class="nav-link"><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="wrapper">
         <section>
           <h2>Menu</h2>
           <table class="menu">
@@ -63,25 +71,47 @@
         </section>
         <section class="contact-us">
           <h2>Contact Us</h2>
-          <div class="contact-info">
-            <p>
-              The Last Supper<br />
-              123 Gourmet Avenue<br />
-              Calgary, AB T2X2C3<br />
-              Phone: (555) 123-4567
-            </p>
+          <div id="contact-section">
+            <div class="contact-info">
+              <h3>Calgary Location</h3>
+              <p>
+                The Last Supper<br />
+                123 Gourmet Avenue<br />
+                Calgary, AB T2X2C3<br />
+                Phone: (555) 123-4567
+              </p>
+            </div>
+            <div class="contact-info">
+              <h3>Edmonton Location</h3>
+              <p>
+                The Last Supper<br />
+                2567 Lunch Avenue<br />
+                Edmonton, AB T5N1N3<br />
+                Phone: (555) 765-4321
+              </p>
+            </div>
+
+            <div class="contact-info">
+              <h3>Vancouver Location</h3>
+              <p>
+                The Last Supper<br />
+                2436 Bread & Wine St NW<br />
+                Vancouver, BC V6Z1R7<br />
+                Phone: (555) 765-4321
+              </p>
+            </div>
           </div>
         </section>
-      </main>
-      <footer>
-        <div class="disclaimer">
-          <p>&copy; 2024 The Last Supper. All rights reserved.</p>
-          <p>
-            Visit us at
-            <a href="#">www.thelastsupper.ca</a>
-          </p>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </main>
+    <footer>
+      <div class="disclaimer">
+        <p>&copy; 2024 The Last Supper. All rights reserved.</p>
+        <p>
+          Visit us at
+          <a href="#">www.thelastsupper.ca</a>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

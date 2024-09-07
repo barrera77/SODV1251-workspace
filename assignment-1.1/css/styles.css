@@ -1,11 +1,27 @@
+:root {
+  --orange-accent: #ff8e2d;
+  --teal: #20abad;
+  --off-white: #fff;
+  --dark-teal: #007c84;
+}
+
 .wrapper {
   width: 900px;
   margin: auto;
 }
 
+header {
+  background-color: var(--teal);
+  padding: 0.5rem;
+}
+
 h1,
 h2 {
   text-align: center;
+  font-family: "Pacifico", cursive;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--off-white);
 }
 
 section {
@@ -16,6 +32,7 @@ section {
   width: 30%;
   margin: auto;
   text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
 }
 
 .nav-bar ul {
@@ -28,10 +45,20 @@ section {
 
 .nav-link a {
   text-decoration: none;
+  color: var(--off-white);
 }
 
 .nav-link a:hover {
   text-decoration: underline;
+}
+
+main {
+  background-color: var(--orange-accent);
+  color: var(--off-white);
+}
+
+h3 {
+  color: var(--dark-teal);
 }
 
 .menu {
@@ -43,11 +70,23 @@ th,
 td {
   padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--dark-teal);
+}
+
+#contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .contact-us {
   padding-bottom: 1.5rem;
+}
+
+footer {
+  background-color: var(--teal);
+  padding: 1rem;
+  color: var(--off-white);
 }
 
 .disclaimer {
@@ -55,4 +94,13 @@ td {
   margin: auto;
   text-align: center;
   font-size: 0.75rem;
+}
+
+.disclaimer a {
+  color: var(--off-white);
+}
+
+.disclaimer a:hover {
+  font-size: 1rem;
+  color: var(--orange-accent);
 }
