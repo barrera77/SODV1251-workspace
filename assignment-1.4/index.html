@@ -10,7 +10,9 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/modern-reset.css" />
-    <link id="style-sheet" rel="stylesheet" href="./css/styles.css" />
+    <link id="style-sheet" rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -27,8 +29,9 @@
   <body>
     <header>
       <div class="announcements">
-        <p>Free shipping in orders above $200 in Canada & US</p>
+        <p>FREE EXPRESS SHIPPING in orders above $200 in Canada & US</p>
       </div>
+
       <div class="header-content">
         <div class="header-logo">
           <div class="search-container">
@@ -142,34 +145,104 @@
             </button>
           </div>
         </div>
-        <nav>
-          <ul class="menu">
-            <li><a href="#">Most Loved</a></li>
-            <li><a href="#">Latest Releases</a></li>
-            <li><a href="#">Sale</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">About Us</a></li>
-          </ul>
-        </nav>
+        <div class="sticky-nav">
+          <nav>
+            <ul class="menu">
+              <li><a href="#">Most Loved</a></li>
+              <li><a href="#">Latest Releases</a></li>
+              <li><a href="#">Sale</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
     <main>
       <section>
         <div class="banner">
           <div class="banner-content">
-            <h2>Summer Threads <br />Collection</h2>
-            <p>Check our latest and finest threads for this summer!</p>
+            <h2>Summer Threads</h2>
+            <h2>Collection</h2>
+            <p>With Elegance!</p>
             <div class="banner-button">
-              <button>Shop Now</button>
+              <button>Shop New Arrivals</button>
             </div>
           </div>
           <div class="banner-image">
-            <img src="./assets/image/banner-image-5.jpg" alt="" />
+            <img src="./assets/image/banner-image-4.png" alt="" />
           </div>
         </div>
       </section>
+
+      <div class="content-wrapper">
+        <section>
+          <div class="main-content">
+            <div class="row">
+              <div class="genders-row">
+                <div class="card card-one">
+                  <div class="card-button">
+                    <button>Shop Now</button>
+                  </div>
+                </div>
+                <div class="card card-two">
+                  <div class="card-button">
+                    <button>Shop Now</button>
+                  </div>
+                </div>
+                <!-- <div class="card">
+                  <div class="card-image-container">
+                    <img src="./assets/image/favs-4.jpg" alt="" />
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./assets/image/favs-5.webp" alt="" />
+                  </div>
+                </div> -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="favorites-row">
+                <div class="favorites-col">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="./assets/image/favs-1.jpg" alt="" />
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="./assets/image/favs-2.webp" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="favorites-button">
+                  <button>Shop Favorites</button>
+                </div>
+
+                <div class="favorites-col">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="./assets/image/favs-3.webp" alt="" />
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="./assets/image/favs-7.webp" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
     <footer></footer>
   </body>

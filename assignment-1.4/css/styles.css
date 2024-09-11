@@ -9,6 +9,7 @@
   --purple: #6a4cd7;
   --pink: #ff003a;
   --blue: #00a3ff;
+  --brown: #987e6f;
 }
 
 body {
@@ -17,9 +18,11 @@ body {
   font-style: normal;
 }
 
-.header-content {
-  width: 90%;
-  margin: auto;
+.sticky-nav {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .announcements {
@@ -32,6 +35,8 @@ body {
 .header-content {
   background-color: var(--white);
   padding-top: 0.5rem;
+  width: 90%;
+  margin: auto;
 }
 
 nav {
@@ -39,14 +44,6 @@ nav {
   margin: auto;
 }
 
-h1 {
-  font-family: "Monoton", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-  font-size: 27px;
-  line-height: 55px;
-  margin-bottom: -10px;
-}
 .search-container {
   width: 20%;
   display: flex;
@@ -61,11 +58,23 @@ h1 {
   cursor: pointer;
 }
 
+.btn-search:hover {
+  background-color: var(--black);
+  color: white;
+}
+
 .search-container input {
   border: 1px solid var(--mid-gray);
   padding: 3px 7px;
 }
 
+h1 {
+  font-family: "Monoton", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 27px;
+  line-height: 0.5em;
+}
 .header-logo {
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +88,19 @@ h1 {
   padding-right: 1.5rem;
   margin-top: -25px;
   border-radius: 50px;
+}
+
+.logo-container span {
+  font-size: 35px;
+}
+
+.logo-container p {
+  text-align: end;
+  border-top: 1px solid var(--black);
+  margin-top: -1em;
+  font-size: 21px;
+  width: 50%;
+  display: inline-block;
 }
 
 /* logo Animation */
@@ -106,18 +128,6 @@ h1 {
 }
 
 /*End Logo Animation */
-.logo-container span {
-  font-size: 35px;
-}
-
-.logo-container p {
-  text-align: end;
-  border-top: 1px solid var(--black);
-  margin-top: -5px;
-  font-size: 21px;
-  width: 50%;
-  display: inline-block;
-}
 
 .icons {
   width: 30%;
@@ -225,22 +235,67 @@ svg {
 
 /* Banner */
 .banner-image {
-  height: 75vh;
+  height: 65vh;
   width: 100%;
 }
 
 .banner-image img {
-  width: 100%;
   max-height: 100%;
-  object-fit: fill;
-  overflow: hidden;
+  object-fit: cover;
+  width: 100%;
+}
+
+.banner-button {
+  padding-top: 1rem;
+}
+
+.banner p {
+  color: var(--light-gray);
 }
 
 .banner-button button {
   background-color: black;
   color: var(--white);
   padding: 0.5rem 1rem;
+  cursor: pointer;
   border: none;
+  text-transform: uppercase;
+}
+
+.banner-button button:hover {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.content-wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.row {
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+}
+
+.card-button {
+  width: 20%;
+  margin: auto;
+  margin-top: 100%;
+}
+
+.card-button button,
+.favorites-button button {
+  border: none;
+  background-color: var(--black);
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.card-button button:hover {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 @media screen and (max-width: 768px) {
@@ -263,10 +318,6 @@ svg {
     font-size: 20px;
   }
 
-  .flip-card {
-    display: none;
-  }
-
   h1 {
     font-size: 20px;
   }
@@ -287,7 +338,11 @@ svg {
   }
 
   .icons {
-    width: 10%;
+    width: 12%;
+  }
+
+  .flip-card {
+    display: none;
   }
 
   .menu {
@@ -296,7 +351,7 @@ svg {
 
   .banner-content {
     position: absolute;
-    bottom: 50%;
+    top: 25%;
     left: 10%;
   }
 
@@ -306,6 +361,20 @@ svg {
 }
 
 @media (min-width: 992px) {
+  .logo-box {
+    width: 30%;
+    margin-top: -1.5rem;
+    padding-right: 2rem;
+  }
+
+  .logo-container p {
+    font-size: 26px;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
   .mobile-menu-button {
     display: none;
   }
@@ -326,10 +395,71 @@ svg {
   }
 
   .banner p {
-    font-size: 22px;
+    font-size: 35px;
   }
 
-  .banner-button {
-    padding-top: 1rem;
+  .genders-row {
+    max-width: 100%;
+    display: flex;
+    height: 100vh;
+  }
+
+  .genders-row .card {
+    width: calc((100% / 2));
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .genders-row .card:hover {
+  }
+
+  .card-one {
+    background-image: url("../assets/image/favs-6.png");
+  }
+
+  .card-two {
+    background-image: url("../assets/image/favs-7.png");
+  }
+  .card-image-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .genders-row .card-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .favorites-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .favorites-row .card {
+    width: calc((100% / 2) - 1rem);
+  }
+
+  .favorites-col {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .favorites-button {
+    align-self: center;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
