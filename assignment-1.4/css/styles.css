@@ -31,6 +31,7 @@ svg {
   text-align: center;
   padding: 0.5rem 0 1.5rem 0;
   white-space: nowrap;
+  position: relative;
 }
 
 /* announcements scroll animation */
@@ -90,10 +91,7 @@ svg {
 }
 
 .header-logo {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   width: 90%;
   margin: auto;
 }
@@ -102,9 +100,11 @@ svg {
 .logo-box {
   width: 80%;
   background-color: var(--white);
-  padding-right: 1rem;
-  margin-top: -40px;
+  padding: 0.75rem 1rem;
   border-radius: 50px;
+  position: absolute;
+  top: 2.6em;
+  right: 5%;
 }
 
 .logo-container h1 {
@@ -180,15 +180,16 @@ nav {
 /* end header */
 
 /* main content */
-
 /* Banner */
 .banner {
   position: relative;
+  width: 100%;
+  height: 25vh;
 }
 
 .banner-content {
   position: absolute;
-  bottom: 5%;
+  bottom: 10%;
   left: 5%;
 }
 
@@ -198,16 +199,19 @@ nav {
 }
 
 .banner p {
+  color: var(--light-gray);
+
   font-size: 15px;
   margin-bottom: 1rem;
 }
 
 .banner-image {
-  height: 25vh;
   width: 100%;
+  height: 100%;
   background-image: url("../assets/image/banner-image-4-mobile.png");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .banner-button button {
@@ -231,18 +235,23 @@ nav {
 }
 
 .row {
-  padding: 1.5rem 0;
+  padding-top: 1rem;
 }
 
 .genders-row {
   width: 100%;
-  height: 100vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
 }
 
+.gender-card-container {
+  height: calc((100% / 2));
+}
+
 .genders-row .card {
-  height: calc(100% / 2);
+  width: 100%;
+  height: 100%;
 }
 
 .card-one {
@@ -251,10 +260,18 @@ nav {
   background-repeat: no-repeat;
 }
 
+.card-one:hover {
+  background-image: url("../assets/image/favs-6-hover.jpg");
+}
+
 .card-two {
   background-image: url("../assets/image/favs-7.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.card-two:hover {
+  background-image: url("../assets/image/favs-7-hover.png");
 }
 
 .card-button button,
@@ -277,10 +294,15 @@ nav {
   border: 1px solid var(--black);
 }
 
+.card-one,
+.card-two {
+  align-content: end;
+  padding-bottom: 3rem;
+}
+
 .card-button {
   width: 50%;
   margin: auto;
-  margin-top: 100%;
   display: flex;
   justify-content: center;
 }
@@ -311,7 +333,7 @@ nav {
   transition: 0.5s ease;
   opacity: 0;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -323,4 +345,631 @@ nav {
   align-content: center;
 }
 
+.card-image-info h3 {
+  font-size: 14px;
+}
+
+.card-image-info p {
+  font-size: 13px;
+}
+
+.card-image-info a {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.card-image-info a:hover {
+  text-decoration: underline;
+}
+
+.favs-card:hover .favs-card-image {
+  opacity: 0.3;
+}
+
+.favs-card:hover .card-image-info {
+  opacity: 1;
+}
+
+.favorites-button {
+  align-self: center;
+}
+
+.formal-row {
+  display: Flex;
+  flex-direction: column;
+  height: 50vh;
+  padding-bottom: 1rem;
+}
+
+.formal-col-one,
+.formal-col-two {
+  height: calc(100% / 2);
+}
+
+.formal-col-two {
+  background-color: var(--light-gray);
+  align-content: center;
+}
+
+.formal-row .card {
+  width: 100%;
+}
+
+.formal-content {
+  width: 100%;
+  text-align: center;
+}
+
+.formal-col-one .card {
+  width: 100%;
+  height: 100%;
+}
+
+.formal-row .card-image {
+  background-image: url("../assets/image/formal-1.jpg"); /* Ensure the path is correct */
+  background-size: cover;
+  width: auto;
+  height: 100%;
+  transition: background-image 0.3s ease-in-out;
+}
+
+.formal-col-one .card-image:hover {
+  background-image: url("../assets/image/formal-2.png");
+}
+
+.formal-row > .formal-col-one:hover + .formal-col-two {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.formal-row > .formal-col-one:hover + .formal-col-two button {
+  background-color: var(--white);
+  color: var(--black);
+}
+
 /* End main content */
+
+/* footer */
+footer {
+  background-color: var(--black);
+  padding-bottom: 1.5rem;
+}
+
+.footer-content {
+  width: 90%;
+  margin: auto;
+}
+
+.footer-content .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-content,
+.footer-content a {
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.footer-content h3 {
+  font-weight: 100;
+}
+
+.footer-content svg {
+  fill: var(--white);
+}
+
+.footer-content ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-content li {
+  padding-bottom: 0.5rem;
+}
+
+.footer-content li a {
+  text-decoration: none;
+}
+
+.social-media-col a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 70%;
+}
+
+.footer-content li a:hover {
+  text-decoration: underline;
+  font-size: 1.2rem;
+}
+
+.footer-content-col {
+  width: 70%;
+  margin: auto;
+}
+
+.sign-up-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.sign-up-col p {
+  font-size: 14px;
+}
+
+.sign-up-col button {
+  border: 0.5px solid var(--white);
+  background-color: var(--black);
+  padding: 0.4rem 0.5rem;
+  color: var(--white);
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.sign-up-col button:hover {
+  border-right: 1px solid var(--black);
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.sign-up-col input {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  border: none;
+}
+
+.form-controls {
+  display: flex;
+}
+
+/* end footer */
+
+/* small devices */
+@media screen and (min-width: 480px) {
+  .logo-box {
+    width: 60%;
+  }
+
+  .logo-container h1 {
+    font-weight: 200;
+    font-size: 1.5em;
+  }
+
+  .logo-container p {
+    font-size: 1rem;
+  }
+
+  .banner-image {
+    height: 25vh;
+  }
+
+  .banner-content {
+    bottom: 20%;
+  }
+
+  .genders-row {
+    height: 100vh;
+  }
+
+  .card-one {
+    background-size: cover;
+  }
+
+  .formal-row {
+    height: 70vh;
+  }
+
+  .footer-content-col {
+    width: calc(100% / 2);
+  }
+  .social-media-col,
+  .info-col {
+    width: 40%;
+  }
+
+  .sign-up-col button,
+  .sign-up-col input {
+    font-size: 12px;
+  }
+}
+
+/* mid-size devices */
+@media screen and (min-width: 768px) {
+  .header-logo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .logo-box {
+    width: 45%;
+    padding-right: 2rem;
+    position: unset;
+    margin-top: -3rem;
+    z-index: 1;
+  }
+
+  .icons {
+    display: flex;
+    width: 15%;
+    gap: 0.5rem;
+    justify-content: end;
+  }
+
+  .icons button {
+    cursor: pointer;
+  }
+
+  .shopping-cart {
+    display: none;
+  }
+
+  .btn-login,
+  .btn-language {
+    border: none;
+    background-color: transparent;
+    padding-top: 5px;
+  }
+
+  .btn-login:hover svg,
+  .btn-language:hover svg {
+    width: 25px;
+  }
+
+  .banner-image {
+    height: 35vh;
+    background-image: url("../assets/image/banner-image-4.png");
+    background-size: cover;
+  }
+
+  .banner-content {
+    top: 2em;
+  }
+
+  .banner-content h2 {
+    font-size: 40px;
+  }
+
+  .banner-content p {
+    font-size: 22px;
+  }
+
+  .banner-button button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .genders-row {
+    flex-direction: row;
+    width: 100%;
+    height: 50vh;
+  }
+
+  .gender-card-container {
+    width: calc((100% / 2));
+    height: 100%;
+  }
+
+  .genders-row .card {
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-one,
+  .card-two {
+    background-size: cover;
+    padding-bottom: 1rem;
+  }
+
+  .card-button {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .formal-row {
+    height: 25vh;
+    flex-direction: row;
+  }
+
+  .formal-row .card {
+    width: 100%;
+  }
+
+  .formal-col-one {
+    width: 40%;
+    height: 100%;
+  }
+
+  .formal-col-two {
+    width: 60%;
+    height: 100%;
+  }
+
+  .formal-row .card-image {
+    width: auto;
+    height: 100%;
+    background-size: fill;
+    background-repeat: no-repeat;
+  }
+
+  .favorites-row {
+    flex-direction: row;
+  }
+
+  .favs-card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .favs-card-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .favs-card-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  footer {
+    padding: 1rem 0;
+  }
+
+  .sign-up-col button,
+  .sign-up-col input {
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* large devices */
+@media screen and (min-width: 1024px) {
+  .mobile-menu-button {
+    display: none;
+  }
+
+  .search-container {
+    width: 20%;
+    display: flex;
+  }
+
+  .btn-search {
+    border-right: none;
+    box-shadow: none;
+    background-color: var(--white);
+    border: 1px solid var(--mid-gray);
+    padding: 3px 7px;
+    cursor: pointer;
+  }
+
+  .btn-search:hover {
+    background-color: var(--black);
+    color: white;
+  }
+
+  .search-container input {
+    border: 1px solid var(--mid-gray);
+    padding: 3px 7px;
+  }
+
+  .logo-box {
+    width: 33%;
+    position: absolute;
+    top: 5em;
+    left: 35%;
+  }
+
+  .logo-container h1 {
+    font-size: 25px;
+  }
+
+  .logo-container p {
+    font-size: 20px;
+  }
+
+  .icons {
+    width: 30%;
+  }
+
+  .shopping-cart {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 11px;
+    background-color: transparent;
+    border: none;
+    padding-left: 0.5rem;
+  }
+
+  .shopping-cart svg {
+    width: 15px;
+  }
+
+  /* Shopping Cart flip animation */
+  .flip-card {
+    background-color: transparent;
+    width: 125px;
+    perspective: 1000px;
+    border: 2px solid var(--mid-gray);
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateX(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  .flip-card-back {
+    background-color: var(--black);
+    transform: rotateX(180deg);
+  }
+
+  .flip-card-back button {
+    color: var(--white);
+  }
+
+  .flip-card-back svg {
+    stroke: var(--white);
+  }
+  /* End Shopping Cart flip Animation */
+
+  .sticky-nav {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--white);
+    opacity: 0.9;
+  }
+
+  nav {
+    display: block;
+    padding: 1px 0;
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+  }
+
+  .menu {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu li a {
+    text-decoration: none;
+    color: var(--dark-gray);
+  }
+
+  /* Banner */
+  .banner-image {
+    height: 50vh;
+    width: 100%;
+  }
+
+  .banner h2 {
+    font-size: 60px;
+    font-weight: 600;
+  }
+
+  .banner p {
+    font-size: 35px;
+  }
+
+  .genders-row {
+    height: 85vh;
+  }
+
+  .gender-card-container {
+    width: calc((100% / 2));
+    height: 100%;
+  }
+
+  .genders-row .card {
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .formal-row {
+    height: 40vh;
+  }
+
+  .formal-row .card-image {
+    max-width: 100%;
+    transition: background-image 0.3s ease-in-out;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .formal-row .card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .footer-content-col {
+    width: 20%;
+  }
+
+  .sign-up-col {
+    width: 35%;
+  }
+
+  .sign-up-col input {
+    width: 70%;
+  }
+}
+
+/* X-large devices */
+@media screen and (min-width: 1200px) {
+  .sticky-nav {
+    margin-top: 0.5rem;
+  }
+  .logo-container h1 {
+    font-size: 2em;
+  }
+
+  .logo-container p {
+    font-size: 25px;
+  }
+
+  .banner-image {
+    height: 60vh;
+    width: 100%;
+  }
+
+  .genders-row {
+    height: 105vh;
+  }
+
+  .formal-row {
+    height: 45vh;
+  }
+}

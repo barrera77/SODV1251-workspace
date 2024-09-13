@@ -402,7 +402,7 @@ svg {
 .formal-row .card-image {
   max-width: 100%;
   height: 50vh;
-  background-image: url("../assets/image/formal-1.jpg"); /* Ensure the path is correct */
+  background-image: url("../assets/image/formal-1.jpg");
   background-size: cover;
   transition: background-image 0.3s ease-in-out;
 }
