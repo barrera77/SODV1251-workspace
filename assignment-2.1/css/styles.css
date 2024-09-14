@@ -1,0 +1,106 @@
+:root {
+  --purple: #440979;
+  --aqua: #00d4ff;
+  --white: #fff;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Libre Baskerville", sans-serif;
+}
+
+p,
+li,
+a {
+  font-family: "Libre Baskerville", serif;
+}
+
+.wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+header {
+  color: var(--purple);
+  text-align: center;
+  padding: 1rem;
+}
+
+.nav-bar-menu {
+  width: 30%;
+  margin: auto;
+}
+
+.menu {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.banner {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(68, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  padding-top: 1rem;
+}
+
+.banner-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--white);
+}
+
+.banner-content {
+  width: 60%;
+  padding: 2.5rem;
+}
+
+.banner-content h2 {
+  padding-bottom: 2rem;
+  font-size: 30px;
+}
+
+.banner-content p,
+.banner-content a {
+  font-size: 18px;
+}
+
+.banner-content span {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.banner-image {
+  width: 40%;
+  align-content: center;
+}
+
+.banner-image img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.menu li {
+  cursor: pointer;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+/* footer */
+footer {
+  background-color: var(--aqua);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 12px;
+}
