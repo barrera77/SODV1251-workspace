@@ -165,7 +165,7 @@ svg {
   display: none;
 }
 
-.menu li a {
+.nav-bar .menu li a {
   text-decoration: none;
   color: var(--dark-gray);
 }
@@ -194,14 +194,40 @@ svg {
   opacity: 0.9;
 }
 
-.menu li:hover {
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 0;
+  width: 30%;
+  background-color: var(--white);
+  opacity: 0;
+  position: absolute;
+  transform: translateY(-2em);
+  z-index: -1;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
+    z-index 0s linear 0.01s;
+}
+
+.submenu li {
+  padding: 0.5rem 1.5rem;
+}
+
+.submenu li:hover {
   background-color: var(--black);
 }
 
-.menu li:hover a {
+.submenu li:hover a {
   color: var(--white);
+  text-decoration: underline;
 }
 
+.menu > li:hover .submenu {
+  display: block;
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0.5s, 0.5s, 0.3s;
+}
 /* end header */
 
 /* main content */
@@ -905,7 +931,6 @@ footer {
   }
 
   .menu {
-    list-style: none;
     padding-left: 0;
     display: flex;
     flex-wrap: wrap;
@@ -920,11 +945,15 @@ footer {
 
   .menu li a {
     text-decoration: none;
-    color: var(--dark-gray);
+    color: var(--black);
   }
 
-  .menu li:hover {
-    background-color: nonwhite;
+  .submenu li {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .submenu {
+    width: 20%;
   }
 
   /* Banner */
@@ -1007,8 +1036,12 @@ footer {
     font-size: 25px;
   }
 
-  .banner-image {
+  .banner {
     height: 60vh;
+  }
+
+  .banner-image {
+    height: 100%;
     width: 100%;
   }
 

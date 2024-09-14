@@ -1,0 +1,78 @@
+.wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+header {
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.nav-bar {
+  width: 30%;
+  margin: auto;
+}
+
+.nav-bar ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+
+section {
+  padding-bottom: 2rem;
+}
+
+.hobbies-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+p,
+figcaption,
+a {
+  font-size: 20px;
+}
+
+figcaption {
+  font-weight: bold;
+}
+
+.card {
+  width: calc(100% / 2);
+}
+figure {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+footer {
+  padding: 1rem 0;
+}
+
+.disclaimer {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+}

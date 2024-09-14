@@ -4,91 +4,101 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/modern-reset.css" defer />
+    <link rel="stylesheet" href="css/styles.css" defer />
   </head>
   <body>
-    <header>
-      <h1>Hobbies and Interests</h1>
-      <nav>
-        <ul>
-          <li><a href="#">Hobbies</a></li>
-          <li><a href="#"></a>Interests</li>
-        </ul>
-      </nav>
-    </header>
-    <body>
-      <section>
-        <p>
-          My name is Manuel Alva and my main hobbies are programming and playing
-          video games <br />The main reason I like programming is beacause is a
-          great exercise for your mind and creativity and because my goal is to
-          become a software developer. <br />
-          and the video games help me to relax and clear my mind.
-        </p>
-      </section>
-      <div>
-        <figure>
-          <figcaption>Programming</figcaption>
-          <img
-            src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg"
-            alt="programing-one"
-          />
-          <img
-            src="https://img.freepik.com/premium-vector/web-development-coding-programming-futuristic-banner-computer-code-laptop_3482-5572.jpg"
-            alt="programming-two"
-          />
-        </figure>
-        <figure>
-          <figcaption>Video Games</figcaption>
-          <img
-            src="https://t4.ftcdn.net/jpg/04/42/21/53/360_F_442215355_AjiR6ogucq3vPzjFAAEfwbPXYGqYVAap.jpg"
-            alt="vieo-games-one"
-          />
-          <img
-            src="https://media.istockphoto.com/id/1334436084/photo/top-down-view-of-colorful-illuminated-gaming-accessories-laying-on-table.jpg?s=612x612&w=0&k=20&c=E9xnbAZoBS5LlUX0q-zxT_3m6gEZpyB2k51_U4LLMNs="
-            alt="video-games-two"
-          />
-        </figure>
-      </div>
-      <div>
-        <ul>
-          <li>Programming</li>
-          <li>Video Games</li>
-          <li>Playing With My Chid</li>
-        </ul>
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Hobbies/Interests</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Programming</td>
-              <td>I love programming as I aim to be a software development</td>
-            </tr>
-            <tr>
-              <td>Video Games</td>
-              <td>Video games help me relax and clear my mind</td>
-            </tr>
-            <tr>
-              <td>Playing with my child</td>
-              <td>
-                Playing with my child is always fun, helps me to teach him new
-                skills and for him to learn them and have some helathy fun at
-                the same time
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </body>
-    <footer>
-      <p>Manuel Alva</p>
-      <p>email:barrera_ml@hotmail.com</p>
-      <p>Phone: 587 532 9485</p>
-    </footer>
+    <div class="wrapper">
+      <header>
+        <h1>Hobbies and Interests</h1>
+        <nav class="nav-bar">
+          <ul>
+            <li><a href="#">Hobbies</a></li>
+            <li><a href="#">Interests</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <p>
+            My name is Manuel Alva and my main hobbies are programming and
+            playing video games <br />The main reason I like programming is
+            beacause is a great exercise for your mind and creativity and
+            because my goal is to become a software developer. <br />
+            and the video games help me to relax and clear my mind.
+          </p>
+        </section>
+        <section>
+          <div class="hobbies-row">
+            <div class="card">
+              <figure>
+                <figcaption>Programming</figcaption>
+                <img
+                  src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg"
+                  alt="programing-one"
+                />
+              </figure>
+            </div>
+            <div class="card">
+              <figure>
+                <figcaption>Video Games</figcaption>
+                <img
+                  src="https://t4.ftcdn.net/jpg/04/42/21/53/360_F_442215355_AjiR6ogucq3vPzjFAAEfwbPXYGqYVAap.jpg"
+                  alt="vieo-games-one"
+                />
+              </figure>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div>
+            <ul>
+              <li>Programming</li>
+              <li>Video Games</li>
+              <li>Playing With My Chid</li>
+            </ul>
+          </div>
+        </section>
+        <div class="hobies-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Hobbies/Interests</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Programming</td>
+                <td>
+                  I love programming as I aim to be a software development
+                </td>
+              </tr>
+              <tr>
+                <td>Video Games</td>
+                <td>Video games help me relax and clear my mind</td>
+              </tr>
+              <tr>
+                <td>Playing with my child</td>
+                <td>
+                  Playing with my child is always fun, helps me to teach him new
+                  skills and for him to learn them and have some helathy fun at
+                  the same time
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+      <footer>
+        <div class="disclaimer">
+          <p>Manuel Alva</p>
+          <p>email:barrera_ml@hotmail.com</p>
+          <p>Phone: 587 532 9485</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
