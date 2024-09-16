@@ -6,7 +6,7 @@ export const quizData = {
       a: "Hyperlinks Text Markup Language",
       b: "Hyper Text Markup Language",
       c: "Home Tool Markup Language",
-      img_url: "",
+      img_url: "./assets/image/question-1-img.png",
     },
     {
       id: 2,
@@ -15,7 +15,7 @@ export const quizData = {
       a: "Python",
       b: "Java",
       c: "C++",
-      img_url: "",
+      img_url: "./assets/image/question-2-img.png",
     },
     {
       id: 3,
@@ -23,7 +23,7 @@ export const quizData = {
       a: "Cascading Style Sheets",
       b: "Computer Style Sheets",
       c: "Colorful Style Sheets",
-      img_url: "",
+      img_url: "./assets/image/question-3-img.png",
     },
     {
       id: 4,
@@ -31,7 +31,7 @@ export const quizData = {
       a: "Git",
       b: "SVN",
       c: "Mercurial",
-      img_url: "",
+      img_url: "./assets/image/question-4-img.png",
     },
     {
       id: 5,
@@ -39,7 +39,7 @@ export const quizData = {
       a: "A collection of functions",
       b: "A blueprint for creating objects",
       c: "A set of variables",
-      img_url: "",
+      img_url: "./assets/image/question-5-img.png",
     },
     {
       id: 6,
@@ -47,15 +47,15 @@ export const quizData = {
       a: "Server Error",
       b: "Request succeeded",
       c: "Request redirected",
-      img_url: "",
+      img_url: "./assets/image/question-6-img.png",
     },
     {
       id: 7,
-      question: "Which of the following is a NoSQL database?",
+      question: "Which of the following is a  ?",
       a: "PostgreSQL",
       b: "MongoDB",
       c: "MySQL",
-      img_url: "",
+      img_url: "./assets/image/question-7-img.png",
     },
     {
       id: 8,
@@ -63,7 +63,7 @@ export const quizData = {
       a: "Interprets code at runtime",
       b: "Translates source code into machine code",
       c: "Checks for syntax errors only",
-      img_url: "",
+      img_url: "./assets/image/question-8-img.png",
     },
     {
       id: 9,
@@ -71,7 +71,7 @@ export const quizData = {
       a: "Application Program Interaction",
       b: "Application Programming Interface",
       c: "Advanced Programming Interaction",
-      img_url: "",
+      img_url: "./assets/image/question-9-img.png",
     },
     {
       id: 10,
@@ -80,7 +80,7 @@ export const quizData = {
       a: "Vue",
       b: "React",
       c: "Angular",
-      img_url: "",
+      img_url: "./assets/image/question-10-img.png",
     },
   ],
   "quiz-answers": [
