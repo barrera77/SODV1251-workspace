@@ -16,6 +16,7 @@ let currentQuestion = 0;
 let numOfAnswers = 0;
 let totalQuestions = quizQuestions.length;
 let answeredQuestions = [];
+let skippedQuestions = [];
 
 //Add event listener to the start quiz to commence the sequence
 btnStartQuiz.addEventListener("click", (event) => {
@@ -103,12 +104,17 @@ function renderFeedback({ quizAnswerObj, feedbackMessage }) {
   handleNextQuestionButton();
 }
 
-// Handle "Next" button click to move to the next question
+// Handle next button to move either skip or move the next question
 const handleNextQuestionButton = () => {
   document.querySelector(".btn-next-question").addEventListener("click", () => {
     currentQuestion += 1;
+
     if (currentQuestion < quizQuestions.length) {
+      if (!answeredQuestions.includes(currentQuestion.toString())) {
+        skippedQuestions.push(currentQuestion);
+      }
       renderQuiz(currentQuestion);
+      console.log(skippedQuestions);
     } else {
       quizWrapper.innerHTML = `<p>Quiz finished! Your score is: ${score}</p>`;
     }
@@ -126,4 +132,14 @@ function updateProgressBar() {
   document.querySelector(
     ".outer-bar p"
   ).innerHTML = `Answered ${answeredCount} of ${totalQuestions} questions`;
+}
+
+function renderSkippedQuestions() {
+  if (currentQuestion === totalQuestions && skippedQuestions.length > 0) {
+    skippedQuestions.forEach((skippedQuestion) => {
+      let questionIndex = skippedQuestion.enderQuiz(questionIndex);
+    });
+  }
+
+  renderQuiz();
 }
