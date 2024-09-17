@@ -82,9 +82,10 @@ function validateAnswer(questionId, userAnswer) {
     answeredQuestions.push(questionId);
     //update the progress bar
     updateProgressBar();
-    console.log(answeredQuestions);
+    /* console.log(answeredQuestions); */
   } else {
     feedbackMessage = `Wrong Answer. The correct answer is: ${correctAnswer.answer}`;
+    answeredQuestions.push(questionId);
   }
   renderFeedback({ quizAnswerObj: correctAnswer, feedbackMessage });
 }
@@ -115,7 +116,14 @@ const handleNextQuestionButton = () => {
       }
       renderQuiz(currentQuestion);
       console.log(skippedQuestions);
-    } else {
+    } else if (skippedQuestions.length > 0) {
+      renderSkippedQuestions();
+
+      /* console.log(`${skippedQuestions.length} more questions to go`); */
+    } else if (
+      currentQuestion === quizQuestions.length &&
+      skippedQuestions.length === 0
+    ) {
       quizWrapper.innerHTML = `<p>Quiz finished! Your score is: ${score}</p>`;
     }
   });
@@ -135,11 +143,18 @@ function updateProgressBar() {
 }
 
 function renderSkippedQuestions() {
-  if (currentQuestion === totalQuestions && skippedQuestions.length > 0) {
-    skippedQuestions.forEach((skippedQuestion) => {
-      let questionIndex = skippedQuestion.enderQuiz(questionIndex);
-    });
-  }
+  let currentIndex = 0;
 
-  renderQuiz();
+  if (currentIndex < skippedQuestions.length) {
+    let questionIndex = skippedQuestions[currentIndex];
+    renderQuiz(questionIndex - 1);
+    currentIndex += 1;
+
+    if (
+      answeredQuestions.includes(currentQuestion.toString()) &&
+      skippedQuestions.includes(questionIndex.toString())
+    ) {
+      skippedQuestions.pop(questionIndex);
+    }
+  }
 }
