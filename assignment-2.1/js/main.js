@@ -1,135 +1,131 @@
 import { quizData } from "./quiz-data.js";
 import { quizTemplate, feedbackTemplate } from "./templates/quiz-templates.js";
 
-//get necessary elements from the DOM
+// Get necessary elements from the DOM
 const quizWrapper = document.querySelector(".quiz-wrapper");
 const btnStartQuiz = document.querySelector(".btn-start-quiz");
 const progressBar = document.querySelector(".inner-bar");
 const progressText = document.querySelector(".progress-bar-container span");
+const resultsContainer = document.querySelector(".results-container");
 
-//Get the data
+// Get the data
 const quizQuestions = quizData["quiz-questions"];
 const quizAnswers = quizData["quiz-answers"];
 
 let score = 0;
-let currentQuestion = 0;
+let currentQuestionIndex;
 let numOfAnswers = 0;
 let totalQuestions = quizQuestions.length;
 let answeredQuestions = [];
 let skippedQuestions = [];
+let isReviewingSkipped = false;
 
-//Add event listener to the start quiz to commence the sequence
 btnStartQuiz.addEventListener("click", (event) => {
   event.preventDefault();
-
-  //set the first question
-  currentQuestion = 0;
-  renderQuiz(currentQuestion);
+  currentQuestionIndex = 0;
+  renderQuiz(currentQuestionIndex);
 });
 
-/**
- * Render the quiz component
- * @param {*} questionIndex
- */
 function renderQuiz(questionIndex) {
   const currentQuestionObject = quizQuestions[questionIndex];
 
-  //Empty quiz container
-  quizWrapper.innerHTML = "";
-
-  //render quiz template
-  quizWrapper.innerHTML += quizTemplate({
+  quizWrapper.innerHTML = quizTemplate({
     quizQuestionObj: currentQuestionObject,
   });
 
-  //Handle answers
+  const answersGroup = document.querySelector(".answers-group");
+  answersGroup.innerHTML = "";
+
+  currentQuestionObject.possible_answers.forEach((answer, index) => {
+    answersGroup.innerHTML += `
+      <button
+        class="btn btn-answer"
+        data-question-id="${currentQuestionObject.id}"
+        data-answer="${index}"
+      >
+        <div class="container">
+          <span class="circle">
+            <span>${index + 1}</span>
+          </span>
+        </div> 
+        ${answer}
+      </button>`;
+  });
+
   handleAnswerButtons();
-  handleNextQuestionButton();
+
+  const nextButton = document.querySelector(".btn-next-question");
+  nextButton.textContent = "Next";
+  nextButton.onclick = handleNextQuestion;
 }
 
-/**
- * Handle the answer buttons click event to validate
- * the chosen annswer
- */
-const handleAnswerButtons = () => {
+function handleAnswerButtons() {
   document.querySelectorAll(".btn-answer").forEach((button) => {
     button.addEventListener("click", (event) => {
-      const questionId = event.target.dataset.questionId;
-      const userAnswer = event.target.dataset.answer;
-
+      const questionId = parseInt(event.target.dataset.questionId);
+      const userAnswer = parseInt(event.target.dataset.answer);
       validateAnswer(questionId, userAnswer);
     });
   });
-};
+}
 
-/**
- * Function to validate the answer and provide feedback
- * @param {*} userAnswer
- * @param {*} questionId
- * @returns
- */
 function validateAnswer(questionId, userAnswer) {
   let correctAnswer = quizAnswers.find(
-    (answer) => answer.question_id == questionId
+    (answer) => answer.question_id === questionId
   );
 
-  let feedbackMessage = "";
+  let feedbackMessage =
+    userAnswer === correctAnswer.answer_index
+      ? "Correct!!!"
+      : `Wrong Answer. The correct answer is: ${
+          correctAnswer.answer_index + 1
+        }`;
 
-  if (userAnswer === correctAnswer.answer) {
-    feedbackMessage = "Correct!!!";
+  if (userAnswer === correctAnswer.answer_index) {
     score += 1;
-    numOfAnswers += 1;
-    answeredQuestions.push(questionId);
-    //update the progress bar
-    updateProgressBar();
-    /* console.log(answeredQuestions); */
-  } else {
-    feedbackMessage = `Wrong Answer. The correct answer is: ${correctAnswer.answer}`;
-    answeredQuestions.push(questionId);
   }
+
+  answeredQuestions.push(questionId);
+  skippedQuestions = skippedQuestions.filter((q) => q !== currentQuestionIndex);
+
+  updateProgressBar();
+  numOfAnswers += 1;
   renderFeedback({ quizAnswerObj: correctAnswer, feedbackMessage });
 }
 
-/**
- * Render the feedback component
- * @param {*} param0
- */
 function renderFeedback({ quizAnswerObj, feedbackMessage }) {
-  document.querySelector(".quiz-content").innerHTML = "";
-
-  document.querySelector(".quiz-content").innerHTML += feedbackTemplate({
+  document.querySelector(".quiz-content").innerHTML = feedbackTemplate({
     quizAnswerObj,
     feedbackMessage,
   });
 
-  handleNextQuestionButton();
+  const nextButton = document.querySelector(".btn-next-question");
+  nextButton.textContent = "Next";
+  nextButton.onclick = handleNextQuestion;
 }
 
-// Handle next button to move either skip or move the next question
-const handleNextQuestionButton = () => {
-  document.querySelector(".btn-next-question").addEventListener("click", () => {
-    currentQuestion += 1;
-
-    if (currentQuestion < quizQuestions.length) {
-      if (!answeredQuestions.includes(currentQuestion.toString())) {
-        skippedQuestions.push(currentQuestion);
-      }
-      renderQuiz(currentQuestion);
-      console.log(skippedQuestions);
-    } else if (skippedQuestions.length > 0) {
-      renderSkippedQuestions();
-
-      /* console.log(`${skippedQuestions.length} more questions to go`); */
-    } else if (
-      currentQuestion === quizQuestions.length &&
-      skippedQuestions.length === 0
-    ) {
-      quizWrapper.innerHTML = `<p>Quiz finished! Your score is: ${score}</p>`;
+function handleNextQuestion() {
+  if (!isReviewingSkipped && currentQuestionIndex < quizQuestions.length - 1) {
+    currentQuestionIndex++;
+    if (!answeredQuestions.includes(quizQuestions[currentQuestionIndex].id)) {
+      skippedQuestions.push(currentQuestionIndex);
     }
-  });
-};
+    renderQuiz(currentQuestionIndex);
+  } else {
+    handleSkippedOrFinish();
+  }
+}
 
-//progress bar
+function handleSkippedOrFinish() {
+  if (skippedQuestions.length > 0) {
+    isReviewingSkipped = true;
+    currentQuestionIndex = skippedQuestions.shift();
+    renderQuiz(currentQuestionIndex);
+  } else {
+    showResults();
+  }
+}
+
 function updateProgressBar() {
   const answeredCount = answeredQuestions.length;
   const progress = (answeredCount / totalQuestions) * 100;
@@ -142,19 +138,12 @@ function updateProgressBar() {
   ).innerHTML = `Answered ${answeredCount} of ${totalQuestions} questions`;
 }
 
-function renderSkippedQuestions() {
-  let currentIndex = 0;
+function showResults() {
+  updateProgressBar();
 
-  if (currentIndex < skippedQuestions.length) {
-    let questionIndex = skippedQuestions[currentIndex];
-    renderQuiz(questionIndex - 1);
-    currentIndex += 1;
-
-    if (
-      answeredQuestions.includes(currentQuestion.toString()) &&
-      skippedQuestions.includes(questionIndex.toString())
-    ) {
-      skippedQuestions.pop(questionIndex);
-    }
-  }
+  resultsContainer.innerHTML = `
+    <p>"Congrats! You've completed the quiz."</p>
+    <p>Your score: ${score} out of ${totalQuestions}</p>
+  `;
+  quizWrapper.innerHTML = "";
 }

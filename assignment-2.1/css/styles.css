@@ -148,6 +148,7 @@ button {
 .quiz-wrapper {
   background-color: var(--dark-purple);
   padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .progress-bar-container,
@@ -227,6 +228,7 @@ button {
 
 .quiz-content {
   padding-top: 2rem;
+  height: 450px;
 }
 
 .quiz-content h3 {
