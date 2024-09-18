@@ -55,7 +55,7 @@ function renderQuiz(questionIndex) {
   handleAnswerButtons();
 
   const nextButton = document.querySelector(".btn-next-question");
-  nextButton.textContent = "Next";
+  nextButton.textContent = isReviewingSkipped ? "Skip" : "Next";
   nextButton.onclick = handleNextQuestion;
 }
 
@@ -86,7 +86,9 @@ function validateAnswer(questionId, userAnswer) {
   }
 
   answeredQuestions.push(questionId);
-  skippedQuestions = skippedQuestions.filter((q) => q !== currentQuestionIndex);
+  skippedQuestions = skippedQuestions.filter(
+    (q) => quizQuestions[q].id !== questionId
+  );
 
   updateProgressBar();
   numOfAnswers += 1;
@@ -100,7 +102,7 @@ function renderFeedback({ quizAnswerObj, feedbackMessage }) {
   });
 
   const nextButton = document.querySelector(".btn-next-question");
-  nextButton.textContent = "Next";
+  nextButton.textContent = isReviewingSkipped ? "Next Skipped" : "Next";
   nextButton.onclick = handleNextQuestion;
 }
 
@@ -120,6 +122,9 @@ function handleSkippedOrFinish() {
   if (skippedQuestions.length > 0) {
     isReviewingSkipped = true;
     currentQuestionIndex = skippedQuestions.shift();
+    if (!answeredQuestions.includes(quizQuestions[currentQuestionIndex].id)) {
+      skippedQuestions.push(currentQuestionIndex);
+    }
     renderQuiz(currentQuestionIndex);
   } else {
     showResults();
