@@ -20,14 +20,8 @@ let answeredQuestions = [];
 let skippedQuestions = [];
 let isReviewingSkipped = false;
 
-/**
- * Add event listener to the start quiz button and start the quiz
- */
-btnStartQuiz.addEventListener("click", (event) => {
-  event.preventDefault();
-  currentQuestionIndex = 0;
-  renderQuiz(currentQuestionIndex);
-});
+//Start the quiz
+startQuiz();
 
 /**
  * Function to render the quiz components
@@ -205,6 +199,26 @@ function showResults() {
    <div class="results-container">
       <h2>"Congrats! You have completed the quiz."</h2>
       <p>Your score: ${score} out of ${totalQuestions}</p>
+      <div class="btn-start-quiz-container">
+        <button class="btn btn-start-quiz">Retry Quiz</button>
+      </div>
   </div>
   `;
+
+  //retry quiz
+  startQuiz();
+}
+
+/**
+ * Function to start the quiz
+ */
+
+function startQuiz() {
+  document
+    .querySelector(".btn-start-quiz-container")
+    .addEventListener("click", (event) => {
+      event.preventDefault();
+      currentQuestionIndex = 0;
+      renderQuiz(currentQuestionIndex);
+    });
 }

@@ -201,10 +201,10 @@ button {
 }
 
 .btn-start-quiz-container {
-  width: 40%;
+  width: 60%;
   margin: auto;
   text-align: center;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
 }
 
 .btn-start-quiz {
