@@ -20,12 +20,19 @@ let answeredQuestions = [];
 let skippedQuestions = [];
 let isReviewingSkipped = false;
 
+/**
+ * Add event listener to the start quiz button and start the quiz
+ */
 btnStartQuiz.addEventListener("click", (event) => {
   event.preventDefault();
   currentQuestionIndex = 0;
   renderQuiz(currentQuestionIndex);
 });
 
+/**
+ * Function to render the quiz components
+ * @param {*} questionIndex
+ */
 function renderQuiz(questionIndex) {
   const currentQuestionObject = quizQuestions[questionIndex];
 
@@ -36,6 +43,7 @@ function renderQuiz(questionIndex) {
   const answersGroup = document.querySelector(".answers-group");
   answersGroup.innerHTML = "";
 
+  //add answer buttons
   currentQuestionObject.possible_answers.forEach((answer, index) => {
     answersGroup.innerHTML += `
       <button
@@ -52,13 +60,19 @@ function renderQuiz(questionIndex) {
       </button>`;
   });
 
+  //handle answer buttons logic
   handleAnswerButtons();
 
   const nextButton = document.querySelector(".btn-next-question");
+
+  //If all questions have been reviewed but there are some pending for answer
   nextButton.textContent = isReviewingSkipped ? "Skip" : "Next";
   nextButton.onclick = handleNextQuestion;
 }
 
+/**
+ * get the buttons for answers, assign even listeners and handle logic.
+ */
 function handleAnswerButtons() {
   document.querySelectorAll(".btn-answer").forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -69,11 +83,17 @@ function handleAnswerButtons() {
   });
 }
 
+/**
+ * Validates the chosen answer
+ * @param {*} questionId
+ * @param {*} userAnswer
+ */
 function validateAnswer(questionId, userAnswer) {
   let correctAnswer = quizAnswers.find(
     (answer) => answer.question_id === questionId
   );
 
+  //create feedback for the user depending if whether the answer is correct or not
   let feedbackMessage =
     userAnswer === correctAnswer.answer_index
       ? "Correct!!!"
@@ -81,56 +101,86 @@ function validateAnswer(questionId, userAnswer) {
           correctAnswer.answer_index + 1
         }`;
 
+  //if the answer is correct increase the score
   if (userAnswer === correctAnswer.answer_index) {
     score += 1;
   }
 
+  //track if the question was answered or skipped
   answeredQuestions.push(questionId);
   skippedQuestions = skippedQuestions.filter(
-    (q) => quizQuestions[q].id !== questionId
+    (question) => quizQuestions[question].id !== questionId
   );
 
+  //update the progress bar and display progress to the user
   updateProgressBar();
   numOfAnswers += 1;
   renderFeedback({ quizAnswerObj: correctAnswer, feedbackMessage });
 }
 
+/**
+ * render the feedback component and display the feedback
+ * @param {*} param0
+ */
 function renderFeedback({ quizAnswerObj, feedbackMessage }) {
   document.querySelector(".quiz-content").innerHTML = feedbackTemplate({
     quizAnswerObj,
     feedbackMessage,
   });
 
+  //add the next button to continue (first review of the questions)
   const nextButton = document.querySelector(".btn-next-question");
+
+  //change the text content if reviewing skipped questions
   nextButton.textContent = isReviewingSkipped ? "Next Skipped" : "Next";
   nextButton.onclick = handleNextQuestion;
 }
 
+/**
+ * FUnction to handle the "next question" button
+ */
 function handleNextQuestion() {
   if (!isReviewingSkipped && currentQuestionIndex < quizQuestions.length - 1) {
     currentQuestionIndex++;
+
+    //check if thequestion was skipped
     if (!answeredQuestions.includes(quizQuestions[currentQuestionIndex].id)) {
       skippedQuestions.push(currentQuestionIndex);
     }
+
+    //render the next question on if still during the first review
     renderQuiz(currentQuestionIndex);
   } else {
+    //render the next question if done qieth the first review and/or
+    //if reviewing the skipped question
     handleSkippedOrFinish();
   }
 }
 
+/**
+ * handle the reviewing of the skipped questions
+ */
 function handleSkippedOrFinish() {
+  //check if there are any skipped questions
   if (skippedQuestions.length > 0) {
     isReviewingSkipped = true;
+
+    //get the first/next of the skipped questions
     currentQuestionIndex = skippedQuestions.shift();
     if (!answeredQuestions.includes(quizQuestions[currentQuestionIndex].id)) {
       skippedQuestions.push(currentQuestionIndex);
     }
+    //render the question
     renderQuiz(currentQuestionIndex);
   } else {
+    //if there are no more questions display thefinal result
     showResults();
   }
 }
 
+/**
+ * Update the progress bar
+ */
 function updateProgressBar() {
   const answeredCount = answeredQuestions.length;
   const progress = (answeredCount / totalQuestions) * 100;
@@ -143,12 +193,18 @@ function updateProgressBar() {
   ).innerHTML = `Answered ${answeredCount} of ${totalQuestions} questions`;
 }
 
+/**
+ * display the final results
+ */
 function showResults() {
   updateProgressBar();
 
-  resultsContainer.innerHTML = `
-    <p>"Congrats! You've completed the quiz."</p>
-    <p>Your score: ${score} out of ${totalQuestions}</p>
-  `;
   quizWrapper.innerHTML = "";
+
+  quizWrapper.innerHTML = `
+   <div class="results-container">
+      <h2>"Congrats! You have completed the quiz."</h2>
+      <p>Your score: ${score} out of ${totalQuestions}</p>
+  </div>
+  `;
 }

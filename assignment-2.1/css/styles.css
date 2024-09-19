@@ -168,20 +168,14 @@ button {
   position: absolute;
   top: 0;
   width: 0%;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(68, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  opacity: 0.5;
+  background-color: var(--aqua);
+  opacity: 0.4;
 }
 
 .outer-bar p {
   width: 40%;
   margin: auto;
   text-align: center;
-  color: #1f0449;
 }
 
 .initial-quiz-content {
@@ -323,6 +317,14 @@ button {
 .btn-next-container {
   width: 70%;
   margin: auto;
+}
+
+.results-container {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  color: var(--white);
+  padding: 3rem;
 }
 
 /* footer */
