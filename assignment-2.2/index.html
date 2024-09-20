@@ -10,17 +10,8 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/modern-reset.css" />
     <link id="style-sheet" rel="stylesheet" href="css/styles.css" />
-
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?Libre+Baskerville&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?:wght@700&display=swap"
-      rel="stylesheet"
-    />
-
+    <link id="style-sheet" rel="stylesheet" href="css/side-bar-styles.css" />
+    <!-- Icons font-awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -28,30 +19,80 @@
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <nav></nav>
-      </header>
       <main>
-        <section></section>
-      </main>
-      <footer>
-        <div class="disclaimer">
-          <p>&copy; 2024 Manuel Alva.</p>
-          <p>
-            This website was created for academic purposes only. Any resemblance
-            to other website or businesses, real or fictional, is purely
-            coincidential
-          </p>
+        <div class="main-wrapper">
+          <div class="aside-wrapper">
+            <aside>
+              <p>Calorie Tracker</p>
+              <a href="javascript:void(0)">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                My drive
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                Meal Planner
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-clone" aria-hidden="true"></i>
+                Shared with me
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                Starred
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                Trash
+              </a>
+            </aside>
+          </div>
+          <div class="content-wrapper">
+            <div class="row row-one">
+              <div class="tracker-section">
+                <div class="cal-tracker">
+                  <p class="date">Date</p>
+                  <div class="inner-bar">
+                    <div class="ui-values">2400</div>
+                    <div class="ui-labels"><strong>Kcal Left</strong></div>
+                  </div>
+                  <div class="cal-report">
+                    <p><span>0</span> cal intake</p>
+                    <p><span>0</span> cal burned</p>
+                  </div>
+                  <div class="nutrients-report">
+                    <p><span>0</span> Proteins</p>
+                    <p><span>0</span> Fat</p>
+                    <p><span>0</span> Carbs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-two">
+              <div class="week-days"></div>
+            </div>
+            <div class="row">
+              <div class="consumption-log">
+                <div class="meal-col">
+                  <div class="card">
+                    <button class="btn-add-meal">
+                      Breakfast<span><i class="fa fa-plus"></i></span>
+                    </button>
+                    <p>Cals</p>
+                  </div>
+                </div>
+                <div class="meal-col">
+                  <div class="card">
+                    <button class="btn-add-meal">
+                      Lunch<span><i class="fa fa-plus"></i></span>
+                    </button>
+                    <p>Cals</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
+      </main>
     </div>
   </body>
 </html>
-
-<!-- sample page 
-https://dribbble.com/shots/5759086-Health-Desktop-App-Meal-Planner-Exploration 
--->
-
-<!-- api 
-https://api-ninjas.com/api/nutrition 
--->

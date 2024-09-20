@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calorie Tracker</title>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js" defer></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/modern-reset.css" />
+    <link id="style-sheet" rel="stylesheet" href="css/styles.css" />
+    <link id="style-sheet" rel="stylesheet" href="css/side-bar-styles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?Libre+Baskerville&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav></nav>
+      </header>
+      <main>
+        <div class="main-wrapper">
+          <div class="aside-wrapper">
+            <aside>
+              <p>Calorie Tracker</p>
+              <a href="javascript:void(0)">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                My drive
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                Meal Planner
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-clone" aria-hidden="true"></i>
+                Shared with me
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                Starred
+              </a>
+              <a href="javascript:void(0)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                Trash
+              </a>
+            </aside>
+          </div>
+          <div class="content-wrapper">
+            <div class="row row-one">
+              <div class="tracker-section">
+                <div class="container cal-tracker">
+                  <p class="date">Date</p>
+                  <div class="inner-bar">
+                    <div class="ui-values">2400</div>
+                    <div class="ui-labels">Kcal</div>
+                  </div>
+                  <div class="cal-report">
+                    <p><span>0</span> cal intake</p>
+                    <p><span>0</span> cal burned</p>
+                  </div>
+                  <div class="nutrients-report">
+                    <p><span>0</span> Proteins</p>
+                    <p><span>0</span> Fat</p>
+                    <p><span>0</span> Carbs</p>
+                  </div>
+                </div>
+
+                <div class="meal-cal-tracker">
+                  <div class="grid-container">
+                    <div class="column">
+                      <div class="card">
+                        <h2>counter</h2>
+                        <p>Breakfast</p>
+                      </div>
+                      <div class="card">
+                        <h2>counter</h2>
+                        <p>Lunch</p>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="card">
+                        <h2>counter</h2>
+                        <p>Dinner</p>
+                      </div>
+                      <div class="card">
+                        <h2>counter</h2>
+                        <p>Snacks</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="nutritional-goals">
+                    <div class="grid-container">
+                      <div class="column">
+                        <div class="card">
+                          <h2>Goals</h2>
+                          <p>Snacks</p>
+                        </div>
+                        <div class="card">
+                          <h2>Calories</h2>
+                          <p>Amount</p>
+                        </div>
+                        <div class="card">
+                          <h2>Carbs</h2>
+                          <p>Amount</p>
+                        </div>
+                        <div class="card">
+                          <h2>Fats</h2>
+                          <p>Amount</p>
+                        </div>
+                        <div class="card">
+                          <h2>Proteins</h2>
+                          <p>Amount</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="week-days">
+                <div class="card date-card">
+                  <button class="weekday">
+                    <h2 class="month-day">16</h2>
+                    <p class="week-day">Sunday</p>
+                  </button>
+                </div>
+                <div class="card">
+                  <button>
+                    <h2>16</h2>
+                    <p>Monday</p>
+                  </button>
+                </div>
+                <div class="card">
+                  <button class="weekday">
+                    <h2>16</h2>
+                    <p>Tuesday</p>
+                  </button>
+                </div>
+                <div class="card">
+                  <button class="weekday">
+                    <h2>16</h2>
+                    <p>Wednesday</p>
+                  </button>
+                </div>
+                <div class="card">
+                  <button class="weekday">
+                    <h2>16</h2>
+                    <p>Thursday</p>
+                  </button>
+                </div>
+                <div class="card">
+                  <button class="weekday">
+                    <h2>16</h2>
+                    <p>Friday</p>
+                  </button>
+                </div>
+                <div class="card">
+                  <button class="weekday">
+                    <h2>16</h2>
+                    <p>Saturday</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="consumption-log">
+                <div class="grid-container">
+                  <div class="card">
+                    <p>Breakfast</p>
+                    <p>Amount</p>
+                  </div>
+                  <div class="card meal-card">
+                    <p>Lunch</p>
+                    <p>Amount</p>
+                  </div>
+                  <div class="card">
+                    <h2>Dinner</h2>
+                    <p>Amount</p>
+                  </div>
+                  <div class="card">
+                    <h2>Snacks</h2>
+                    <p>Amount</p>
+                  </div>
+                  <div class="card">
+                    <h2>Exercise</h2>
+                    <p>Amount</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="meal-picker">
+                <div class="scroll-wrapper">
+                  <div class="grid-container">
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img src="#" alt="meal" />
+                      <p>Description</p>
+                      <div>
+                        <button>Add Meal</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="disclaimer">
+          <p>&copy; 2024 Manuel Alva.</p>
+          <p>
+            This website was created for academic purposes only. Any resemblance
+            to other website or businesses, real or fictional, is purely
+            coincidential
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<!-- sample page 
+https://dribbble.com/shots/5759086-Health-Desktop-App-Meal-Planner-Exploration 
+-->
+
+<!-- api 
+https://api-ninjas.com/api/nutrition 
+-->
