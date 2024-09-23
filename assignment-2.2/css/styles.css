@@ -169,6 +169,11 @@ main {
   width: calc(100% / 7);
 }
 
+.today {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
 .btn-weekday {
   width: 100%;
   border: none;

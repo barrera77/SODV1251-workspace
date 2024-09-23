@@ -27,9 +27,15 @@ function createWeeklyCalendar() {
         index - currentDayOfWeek + currentDay
       ).getDate();
 
+      //TODO Revise logic, as is not highlighting the current date
+      // in the calendar
+      const isToday = dayOfMonth === currentDay && index === currentDayOfWeek;
+      const highlightCurrentDay = isToday ? "today" : "";
+
       return dateCardTemplate({
         monthDay: dayOfMonth === currentDay ? `${dayOfMonth}` : dayOfMonth,
         weekDay: day,
+        highlightCurrentDay,
       });
     })
     .join("");
