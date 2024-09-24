@@ -1,6 +1,11 @@
-import { dateCardTemplate } from "./templates.js";
+import {
+  dateCardTemplate,
+  consumptionReportLog,
+  mealLogPage,
+} from "./templates.js";
 
 const dateContainer = document.querySelector(".date");
+const mainWrapper = document.querySelector(".main-wrapper");
 
 function onInit() {
   const today = new Date();
@@ -9,6 +14,7 @@ function onInit() {
   dateContainer.textContent = `Today: ${today.toDateString()}`;
   //Create the week calendar
   createWeeklyCalendar();
+  /* renderMealLog(); */
 }
 
 onInit();
@@ -27,8 +33,7 @@ function createWeeklyCalendar() {
         index - currentDayOfWeek + currentDay
       ).getDate();
 
-      //TODO Revise logic, as is not highlighting the current date
-      // in the calendar
+      //Highlight current date
       const isToday = dayOfMonth === currentDay && index === currentDayOfWeek;
       const highlightCurrentDay = isToday ? "today" : "";
 
@@ -41,11 +46,44 @@ function createWeeklyCalendar() {
     .join("");
 
   document.querySelector(".week-days").innerHTML = weekRow;
+  onSelectDate();
 }
 
-/* const appId = "2cd5c344"; // Replace with your app ID
-const appKey = "0b682d95ce4b253040eb6ff752ea0665"; // Replace with your app key
-const query = "brisket"; // Your query string
+function renderMealLog() {
+  let logContainer = document.querySelector(".row-three");
+  logContainer.innerHTML = "";
+  logContainer.innerHTML = consumptionReportLog;
+}
+
+function onSelectDate() {
+  const weekdayButons = document.querySelectorAll(".btn-weekday");
+
+  weekdayButons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      renderMealLog();
+    });
+  });
+
+  onHandleAddMealButtons();
+}
+
+function onHandleAddMealButtons() {
+  const addMealButtons = document.querySelectorAll("btn-add-meal");
+
+  addMealButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      goToMealPlanner();
+    });
+  });
+}
+
+function goToMealPlanner() {
+  mainWrapper.innerHTML = "";
+  mainWrapper.innerHTML = mealLogPage;
+}
+
+/* const appId = "2cd5c344";
+const appKey = "0b682d95ce4b253040eb6ff752ea0665"; 
 
 const options = {
   method: "POST",

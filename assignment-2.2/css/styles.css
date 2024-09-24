@@ -11,12 +11,7 @@
 body {
   font-family: "Roboto";
   margin: 0;
-  padding: 2rem 4rem;
-}
-
-main {
-  height: 100%;
-  width: 100%;
+  padding: 1rem 4rem;
 }
 
 .wrapper {
@@ -27,15 +22,14 @@ main {
   opacity: 0.8;
   background-repeat: no-repeat;
   margin: auto;
-  height: 90vh;
+  height: 100%;
   padding: 2rem 0;
   border-radius: 8px;
 }
 
 .main-wrapper {
-  width: 90%;
-  height: 100%;
-  background-color: transparent;
+  width: 95%;
+  height: 90vh;
   margin: auto;
   background-color: var(--white);
   display: flex;
@@ -170,8 +164,7 @@ main {
 }
 
 .today {
-  background-color: var(--orange);
-  color: var(--white);
+  color: var(--orange);
 }
 
 .btn-weekday {
@@ -187,16 +180,26 @@ main {
 }
 
 .consumption-log {
+  width: 100%;
+}
+
+.consumption-log-row {
   display: flex;
   gap: 1rem;
 }
+
 .meal-col {
   width: calc(100% / 2);
+  border: 1px solid var(--mid-gray);
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .meal-col .card {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px dotted var(--dark-gray);
 }
 .card span {
   width: 20px;
