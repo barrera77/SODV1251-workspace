@@ -9,6 +9,7 @@ import { foodData } from "./data.js";
 
 const dateContainer = document.querySelector(".date");
 const foodLogWrapper = document.querySelector(".row-three");
+const menuPlanner = document.querySelector(".menu-planner");
 
 const data = foodData["meal-data"];
 
@@ -22,6 +23,9 @@ function onInit() {
   /* renderMealLog(); */
   renderMealLog();
   onHandleAddMealButtons();
+
+  /* enable nav menu buttons */
+  onHandleMenuPlannerButton();
 }
 
 onInit();
@@ -75,11 +79,11 @@ function onSelectDate() {
 
 function onHandleAddMealButtons() {
   const addMealButtons = document.querySelectorAll(".btn-add-meal");
-  console.log("Add Meal Buttons:", addMealButtons); // Check if buttons are selected
   addMealButtons.forEach((button) => {
     button.addEventListener("click", () => {
       renderMealPlanner();
-      onHandleBrowseAllFoodsButton(foodData);
+      onHandleBrowseAllFoodsButton();
+      onHandleSearchFoodsButton();
     });
   });
 }
@@ -92,24 +96,64 @@ function renderMealPlanner() {
 //TODO revise food row displaying logic because is
 //displaying undefined instead of the food details
 
-function onHandleBrowseAllFoodsButton(data) {
+function onHandleBrowseAllFoodsButton() {
   document
     .querySelector(".btn-browse-all-foods")
     .addEventListener("click", () => {
-      displayAllFoods(foodData);
+      displayAllFoods();
     });
 }
 
-function displayAllFoods(data) {
+function displayAllFoods() {
   const foodLogDisplay = document.querySelector(".food-log-display");
   foodLogDisplay.innerHTML = "";
 
-  data["meal-data"].forEach((food) => {
-    foodLogDisplay.innerHTML += foodRow(
-      food.name,
-      food.serving_size,
-      food.calories_per_serving
-    );
+  //TODO need to sort the data
+
+  data.forEach((food) => {
+    foodLogDisplay.innerHTML += foodRow({
+      name: food.name,
+      serving_size: food.serving_size,
+      calories: food.calories_per_serving,
+    });
+  });
+}
+
+function searchFoods(query) {
+  if (!query) {
+    return data;
+  } else {
+    return data.filter((food) => food.name.toLowerCase().includes(query));
+  }
+}
+
+function onHandleSearchFoodsButton() {
+  document.querySelector(".btn-search-foods").addEventListener("click", () => {
+    displaySearchedFoods();
+  });
+}
+
+function displaySearchedFoods() {
+  const foodLogDisplay = document.querySelector(".food-log-display");
+  foodLogDisplay.innerHTML = "";
+
+  let query = document.querySelector(".food-input").value;
+
+  let search = searchFoods(query);
+
+  search.forEach((food) => {
+    foodLogDisplay.innerHTML += foodRow({
+      name: food.name,
+      serving_size: food.serving_size,
+      calories: food.calories_per_serving,
+    });
+  });
+}
+
+/* menu navigation */
+function onHandleMenuPlannerButton() {
+  menuPlanner.addEventListener("click", () => {
+    renderMealPlanner();
   });
 }
 

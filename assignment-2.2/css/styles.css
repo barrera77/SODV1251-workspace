@@ -228,7 +228,7 @@ body {
 }
 
 .row-three {
-  height: 65%;
+  max-height: 60%;
 }
 
 .meal-log-page h2 {
@@ -243,11 +243,13 @@ body {
 
 .search-wrapper {
   display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .search-container {
   display: flex;
-  width: 75%;
+  width: 60%;
 }
 
 .btn-search-foods {
@@ -263,11 +265,29 @@ body {
   background-color: var(--white);
 }
 
+.btn-food-basket i {
+  font-size: 1.75rem;
+}
+
+.btn-food-basket span {
+  background-color: red;
+  color: var(--white);
+  padding: 1px 6px;
+  border-radius: 50%;
+}
+
+.btn-food-basket {
+  border: none;
+  background-color: var(--white);
+  cursor: pointer;
+  padding-top: 5px;
+}
+
 .search-container input {
   border: 4px solid var(--yellow);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  width: 60%;
+  width: 65%;
   padding-left: 1rem;
 }
 
@@ -312,15 +332,31 @@ body {
   border: 1px solid var(--orange);
   border-radius: 5px;
   background-color: var(--white);
-  color: var(--orange);
+  color: var(--black);
   cursor: pointer;
 }
 
 .food-log-display {
   overflow-y: auto;
-  max-height: 350px;
+  max-height: 250px;
+  margin-top: 1rem;
+  border-top: 1px solid var(--mid-gray);
 }
 
 .scroll-wrapper {
   width: 100%;
+}
+
+.food-serving {
+  padding-bottom: 0.5rem;
+}
+
+.food-calories {
+  border: 1px solid var(--dark-gray);
+  padding: 0 0.5rem;
+  text-align: center;
+  border-radius: 25px;
+  background-color: var(--dark-gray);
+  color: var(--white);
+  width: max-content;
 }

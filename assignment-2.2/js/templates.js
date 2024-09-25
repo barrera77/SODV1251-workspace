@@ -59,8 +59,13 @@ export const mealLogPage = `
   <div class="meal-log-page-container">
     <div class="search-wrapper">
       <div class="search-container">
-        <input type="text" placeholder="Search for foods"/>
+        <input class="food-input" type="text" placeholder="Search for foods"/>
         <button class="btn-search-foods">Search Foods</button>
+      </div>
+      <div class="food-basket">
+      <button class="btn-food-basket"><span>0</span>
+        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+      </button>
       </div>
       <div class="btn-browse-all-foods-container">
         <button class="btn-browse-all-foods">Browse all Foods</button>
