@@ -10,6 +10,8 @@ import { foodData } from "./data.js";
 const dateContainer = document.querySelector(".date");
 const foodLogWrapper = document.querySelector(".row-three");
 
+const data = foodData["meal-data"];
+
 function onInit() {
   const today = new Date();
 
@@ -77,6 +79,7 @@ function onHandleAddMealButtons() {
   addMealButtons.forEach((button) => {
     button.addEventListener("click", () => {
       renderMealPlanner();
+      onHandleBrowseAllFoodsButton(foodData);
     });
   });
 }
@@ -86,23 +89,27 @@ function renderMealPlanner() {
   foodLogWrapper.innerHTML = mealLogPage;
 }
 
-//TODO revise food row displaying logic
+//TODO revise food row displaying logic because is
+//displaying undefined instead of the food details
 
-function onHandleBrowseAllFoodsButton() {
-  const btnBrowseAllFoods = document
+function onHandleBrowseAllFoodsButton(data) {
+  document
     .querySelector(".btn-browse-all-foods")
     .addEventListener("click", () => {
-      displayAllFoods();
+      displayAllFoods(foodData);
     });
 }
 
-function displayAllFoods() {
+function displayAllFoods(data) {
   const foodLogDisplay = document.querySelector(".food-log-display");
   foodLogDisplay.innerHTML = "";
 
-  foodData["meal-data"].forEach((food) => {
-    const foodRowHTML = `<div class="food-row">${food}</div>`;
-    foodLogDisplay.innerHTML += foodRowHTML;
+  data["meal-data"].forEach((food) => {
+    foodLogDisplay.innerHTML += foodRow(
+      food.name,
+      food.serving_size,
+      food.calories_per_serving
+    );
   });
 }
 
