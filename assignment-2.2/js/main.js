@@ -2,10 +2,13 @@ import {
   dateCardTemplate,
   consumptionReportLog,
   mealLogPage,
+  foodRow,
 } from "./templates.js";
 
+import { foodData } from "./data.js";
+
 const dateContainer = document.querySelector(".date");
-const mainWrapper = document.querySelector(".main-wrapper");
+const foodLogWrapper = document.querySelector(".row-three");
 
 function onInit() {
   const today = new Date();
@@ -15,6 +18,8 @@ function onInit() {
   //Create the week calendar
   createWeeklyCalendar();
   /* renderMealLog(); */
+  renderMealLog();
+  onHandleAddMealButtons();
 }
 
 onInit();
@@ -61,25 +66,44 @@ function onSelectDate() {
   weekdayButons.forEach((button) => {
     button.addEventListener("click", (event) => {
       renderMealLog();
+      onHandleAddMealButtons();
     });
   });
-
-  onHandleAddMealButtons();
 }
 
 function onHandleAddMealButtons() {
-  const addMealButtons = document.querySelectorAll("btn-add-meal");
-
+  const addMealButtons = document.querySelectorAll(".btn-add-meal");
+  console.log("Add Meal Buttons:", addMealButtons); // Check if buttons are selected
   addMealButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      goToMealPlanner();
+      renderMealPlanner();
     });
   });
 }
 
-function goToMealPlanner() {
-  mainWrapper.innerHTML = "";
-  mainWrapper.innerHTML = mealLogPage;
+function renderMealPlanner() {
+  foodLogWrapper.innerHTML = "";
+  foodLogWrapper.innerHTML = mealLogPage;
+}
+
+//TODO revise food row displaying logic
+
+function onHandleBrowseAllFoodsButton() {
+  const btnBrowseAllFoods = document
+    .querySelector(".btn-browse-all-foods")
+    .addEventListener("click", () => {
+      displayAllFoods();
+    });
+}
+
+function displayAllFoods() {
+  const foodLogDisplay = document.querySelector(".food-log-display");
+  foodLogDisplay.innerHTML = "";
+
+  foodData["meal-data"].forEach((food) => {
+    const foodRowHTML = `<div class="food-row">${food}</div>`;
+    foodLogDisplay.innerHTML += foodRowHTML;
+  });
 }
 
 /* const appId = "2cd5c344";
