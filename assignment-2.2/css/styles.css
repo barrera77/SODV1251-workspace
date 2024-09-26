@@ -247,6 +247,12 @@ body {
   gap: 1rem;
 }
 
+.meal-log-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .search-container {
   display: flex;
   width: 60%;
@@ -265,7 +271,8 @@ body {
   background-color: var(--white);
 }
 
-.btn-food-basket i {
+.btn-food-basket i,
+.btn-back-to-home i {
   font-size: 1.75rem;
 }
 
@@ -276,7 +283,8 @@ body {
   border-radius: 50%;
 }
 
-.btn-food-basket {
+.btn-food-basket,
+.btn-back-to-home {
   border: none;
   background-color: var(--white);
   cursor: pointer;
@@ -328,7 +336,9 @@ body {
 }
 
 .btn-add-food,
-.btn-log-food {
+.btn-log-food,
+.btn-cancel,
+.btn-clear-content {
   padding: 5px 1.5rem;
   border: 1px solid var(--orange);
   border-radius: 5px;

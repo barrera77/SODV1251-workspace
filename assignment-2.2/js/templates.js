@@ -10,52 +10,60 @@ export const dateCardTemplate = ({ monthDay, weekDay, highlightCurrentDay }) =>
 
 export const consumptionReportLog = `
 <div class="consumption-log">
-                <div class="consumption-log-row">
-                  <div class="meal-col">
-                    <div class="card meal-card">
-                      <button class="btn-add-meal breakfast">
-                        Breakfast<span><i class="fa fa-plus"></i></span>
-                      </button>
-                      <p>Cals</p>
-                    </div>
-                    <div class="meal-container">Add food here</div>
-                  </div>
-                  <div class="meal-col">
-                    <div class="card meal-card">
-                      <button class="btn-add-meal lunch">
-                        Lunch<span><i class="fa fa-plus"></i></span>
-                      </button>
-                      <p>Cals</p>
-                    </div>
-                    <div class="meal-container">Add food here</div>
-                  </div>
-                </div>
-                <div class="consumption-log-row">
-                  <div class="meal-col">
-                    <div class="card meal-card">
-                      <button class="btn-add-meal dinner">
-                        Dinner<span><i class="fa fa-plus"></i></span>
-                      </button>
-                      <p>Cals</p>
-                    </div>
-                    <div class="meal-container">Add food here</div>
-                  </div>
-                  <div class="meal-col">
-                    <div class="card meal-card">
-                      <button class="btn-add-meal snack">
-                        Snack<span><i class="fa fa-plus"></i></span>
-                      </button>
-                      <p>Cals</p>
-                    </div>
-                    <div class="meal-container">Add food here</div>
-                  </div>
-                </div>
-              </div>
+  <div class="consumption-log-row">
+    <div class="meal-col">
+      <div class="card meal-card">
+        <button class="btn-add-meal breakfast">
+          Breakfast<span><i class="fa fa-plus"></i></span>
+        </button>
+        <p>Cals</p>
+      </div>
+      <div class="meal-container">Add food here</div>
+    </div>
+    <div class="meal-col">
+      <div class="card meal-card">
+        <button class="btn-add-meal lunch">
+          Lunch<span><i class="fa fa-plus"></i></span>
+        </button>
+        <p>Cals</p>
+      </div>
+      <div class="meal-container">Add food here</div>
+    </div>
+  </div>
+  <div class="consumption-log-row">
+    <div class="meal-col">
+      <div class="card meal-card">
+        <button class="btn-add-meal dinner">
+          Dinner<span><i class="fa fa-plus"></i></span>
+        </button>
+        <p>Cals</p>
+      </div>
+      <div class="meal-container">Add food here</div>
+    </div>
+    <div class="meal-col">
+      <div class="card meal-card">
+        <button class="btn-add-meal snack">
+          Snack<span><i class="fa fa-plus"></i></span>
+        </button>
+        <p>Cals</p>
+      </div>
+      <div class="meal-container">Add food here</div>
+    </div>
+  </div>
+</div>
 `;
 
 export const mealLogPage = `
 <div class="meal-log-page">
-<h2>Meal Planner</h2>
+<div class="meal-log-page-header">
+  <button class="btn-back-to-home">
+    <i class="fa fa-home" aria-hidden="true"></i>
+  </button>
+  
+  <h2>Meal Planner</h2>
+
+  <button class="btn-clear-content">Clear</button>
+</div>
   <div class="meal-log-page-container">
     <div class="search-wrapper">
       <div class="search-container">
@@ -95,7 +103,9 @@ export const foodRow = (food) => `
 
 export const basket = `
 <div class="basket-container">
+  <h2>Food Basket</h2>
   <div class="basket-content"></div>
   <button class="btn-log-food">Log Food</button>
+  <button class="btn-cancel">Cancel</button>
 </div>
 `;
