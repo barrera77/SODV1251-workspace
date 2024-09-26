@@ -208,6 +208,11 @@ function renderBasketItems() {
   const basketContent = document.querySelector(".basket-content");
   basketContent.innerHTML = "";
 
+  if (foodBasket.length === 0) {
+    basketContent.innerHTML = "Basket is empty";
+    /* TODO: disable Log Food button */
+  }
+
   foodBasket.forEach((food) => {
     basketContent.innerHTML += foodRow(food);
   });
