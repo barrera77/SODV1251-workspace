@@ -63,7 +63,7 @@ export const mealLogPage = `
         <button class="btn-search-foods">Search Foods</button>
       </div>
       <div class="food-basket">
-      <button class="btn-food-basket"><span>0</span>
+      <button class="btn-food-basket"><span class="basket-items">0</span>
         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
       </button>
       </div>
@@ -76,17 +76,26 @@ export const mealLogPage = `
 </div>
 `;
 
-export const foodRow = ({ name, serving_size, calories }) => `
+export const foodRow = (food) => `
 <div class="food-row">
   <div class="card food-card">
     <div class="food-details">
-      <h3 class="food-name">${name}</h3>
-      <p class="food-serving">${serving_size}</p>
-      <p class="food-calories"><span>${calories}</span> calories</p>
+      <h3 class="food-name">${food.name}</h3>
+      <p class="food-serving">${food.serving_size}</p>
+      <p class="food-calories"><span>${food.calories}</span> calories</p>
     </div>
     <div class="btn-log-food-container">
-      <button class="btn-log-food">Log Food</button>
+      <button class="btn-add-food" data-food='${JSON.stringify(
+        food
+      )}'>Add Food</button>
     </div>
   </div> 
+</div>
+`;
+
+export const basket = `
+<div class="basket-container">
+  <div class="basket-content"></div>
+  <button class="btn-log-food">Log Food</button>
 </div>
 `;

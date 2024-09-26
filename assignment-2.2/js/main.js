@@ -3,6 +3,7 @@ import {
   consumptionReportLog,
   mealLogPage,
   foodRow,
+  basket,
 } from "./templates.js";
 
 import { foodData } from "./data.js";
@@ -11,7 +12,12 @@ const dateContainer = document.querySelector(".date");
 const foodLogWrapper = document.querySelector(".row-three");
 const menuPlanner = document.querySelector(".menu-planner");
 
+//Food data
 const data = foodData["meal-data"];
+
+//basket items
+let foodBasket = [];
+let basketItemsCount = 0;
 
 function onInit() {
   const today = new Date();
@@ -70,9 +76,8 @@ function onSelectDate() {
   const weekdayButons = document.querySelectorAll(".btn-weekday");
 
   weekdayButons.forEach((button) => {
-    button.addEventListener("click", (event) => {
+    button.addEventListener("click", () => {
       renderMealLog();
-      onHandleAddMealButtons();
     });
   });
 }
@@ -84,6 +89,8 @@ function onHandleAddMealButtons() {
       renderMealPlanner();
       onHandleBrowseAllFoodsButton();
       onHandleSearchFoodsButton();
+      onHandleButtonBasket();
+      renderBasketItems();
     });
   });
 }
@@ -117,6 +124,7 @@ function displayAllFoods() {
       calories: food.calories_per_serving,
     });
   });
+  onHandleAddFoodButtons();
 }
 
 function searchFoods(query) {
@@ -142,18 +150,66 @@ function displaySearchedFoods() {
   let search = searchFoods(query);
 
   search.forEach((food) => {
-    foodLogDisplay.innerHTML += foodRow({
-      name: food.name,
-      serving_size: food.serving_size,
-      calories: food.calories_per_serving,
+    foodLogDisplay.innerHTML += foodRow(food);
+  });
+  onHandleAddFoodButtons();
+}
+
+function onHandleAddFoodButtons() {
+  const btnAddFood = document.querySelectorAll(".btn-add-food");
+
+  btnAddFood.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const food = JSON.parse(event.target.dataset.food);
+      onAddFoodToBasket(food);
     });
   });
+}
+
+function onAddFoodToBasket(food) {
+  if (food != null) {
+    foodBasket.push(food);
+    basketItemsCount += 1;
+    const basketItemCounter = document.querySelector(".basket-items");
+    if (basketItemCounter) {
+      basketItemCounter.textContent = basketItemsCount;
+    }
+    console.log("Food added to basket:", foodBasket);
+    console.log(basketItemsCount);
+  }
 }
 
 /* menu navigation */
 function onHandleMenuPlannerButton() {
   menuPlanner.addEventListener("click", () => {
     renderMealPlanner();
+  });
+}
+
+function onHandleButtonBasket() {
+  document.querySelector(".btn-food-basket").addEventListener("click", () => {
+    displayBasket();
+  });
+}
+
+function displayBasket() {
+  const foodLogDisplay = document.querySelector(".food-log-display");
+  foodLogDisplay.innerHTML = "";
+
+  foodLogDisplay.innerHTML = basket;
+  renderBasketItems();
+}
+
+/* TODO: fix renderBasketItems. gives a null reference error on line 206
+have to disable/hide add food buttons. Suggestion create a whole new component
+to display calorie count and item counts with option to add/remove 
+quantities*/
+function renderBasketItems() {
+  const basketContent = document.querySelector(".basket-content");
+  basketContent.innerHTML = "";
+
+  foodBasket.forEach((food) => {
+    basketContent.innerHTML += foodRow(food);
   });
 }
 
