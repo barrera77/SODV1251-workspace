@@ -53,17 +53,16 @@ export const consumptionReportLog = `
 </div>
 `;
 
-export const mealLogPage = `
+export const mealPlanner = `
 <div class="meal-log-page">
-<div class="meal-log-page-header">
-  <button class="btn-back-to-home">
-    <i class="fa fa-home" aria-hidden="true"></i>
-  </button>
-  
-  <h2>Meal Planner</h2>
+  <div class="meal-log-page-header">
+    <button class="fa fa-home btn-back-to-home">
+    </button>
+    
+    <h2>Meal Planner</h2>
 
-  <button class="btn-clear-content">Clear</button>
-</div>
+    <button class="btn-clear-content">Clear</button>
+  </div>
   <div class="meal-log-page-container">
     <div class="search-wrapper">
       <div class="search-container">
@@ -71,8 +70,9 @@ export const mealLogPage = `
         <button class="btn-search-foods">Search Foods</button>
       </div>
       <div class="food-basket">
-      <button class="btn-food-basket"><span class="basket-items">0</span>
-        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+      <span class="basket-items">0</span>
+      <button class="fa fa-shopping-basket btn-food-basket">
+    
       </button>
       </div>
       <div class="btn-browse-all-foods-container">
@@ -102,10 +102,57 @@ export const foodRow = (food) => `
 `;
 
 export const basket = `
-<div class="basket-container">
-  <h2>Food Basket</h2>
-  <div class="basket-content"></div>
-  <button class="btn-log-food">Log Food</button>
-  <button class="btn-cancel">Cancel</button>
-</div>
+  <div class="basket-container">
+    <h2>Food Basket</h2>
+    <div class="food-table-wrapper">
+      <table class="food-basket-table">
+        <thead >
+          <tr >
+            <th>Serving</th>
+            <th>Quantity</th>
+            <th>Food</th>
+            <th>Kcal</th>
+            <th class="col-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="basket-content"></tbody>
+      </table>
+    </div>
+    <div class="basket-actions-container">
+      <div class="nutritional-info">
+        <div class="calorie-total">
+          <p>Total Calories:</p>
+          <span class="total-calories">0</span>
+        </div>
+        <div class="nutritional-info-totals">
+          <div class="nutritional-value"><span class="protein-count">0</span><p>Proteins</p></div>
+          <div class="nutritional-value"><span class="fat-count">0</span><p>Fat</p></div>
+          <div class="nutritional-value"><span class="carb-count">0</span><p>Carbs</p></div>
+        </div>
+      </div>
+      <div class="basket-actions">
+        <button class="btn-log-all-food">Log All Food</button>
+        <button class="btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+`;
+
+export const basketFoodRow = (food, qty) => `
+  <tr class="basket-food-row">
+    <td>${food.serving_size}</td>
+    <td><input class="input-qty" type="number" value="${qty}" /></td >
+    <td><h3 class="food-name"><strong>${food.name}</strong></h3></td>
+    <td><p class="basket-food-calories"><span>${
+      food.calories * qty
+    }</span></p></td>
+    <td>
+      <div class="action-buttons-container">
+        <button class="btn-log-food">Log Food</button>
+        <button class="btn-remove-item" data-food='${JSON.stringify(
+          food
+        )}'>Remove</button>
+      </div>
+    </td>
+  </tr>
 `;

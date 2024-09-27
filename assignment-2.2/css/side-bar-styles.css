@@ -28,6 +28,7 @@ aside a,
   font-size: 13px;
   color: var(--black);
   font-weight: 500;
+  cursor: pointer;
   display: block;
   padding: 12px;
   padding-left: 20px;

@@ -271,12 +271,7 @@ body {
   background-color: var(--white);
 }
 
-.btn-food-basket i,
-.btn-back-to-home i {
-  font-size: 1.75rem;
-}
-
-.btn-food-basket span {
+.food-basket span {
   background-color: red;
   color: var(--white);
   padding: 2px 6px;
@@ -289,6 +284,11 @@ body {
   background-color: var(--white);
   cursor: pointer;
   padding-top: 5px;
+}
+
+.fa-shopping-basket,
+.fa-home {
+  font-size: 28px !important;
 }
 
 .search-container input {
@@ -314,6 +314,7 @@ body {
   border-radius: 5px;
   border: none;
   background-color: var(--orange);
+  cursor: pointer;
 }
 
 .btn-browse-all-foods:hover {
@@ -322,10 +323,50 @@ body {
 }
 
 /* Food card */
-.food-card {
+.food-card,
+.basket-food-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.basket-food-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rem;
+}
+
+.food-basket-table {
+  width: 95%;
+  margin: auto;
+}
+
+.food-basket-table th {
+  padding: 12px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--dark-gray);
+}
+
+.food-basket-table td {
+  padding: 1rem 0;
+  text-align: left;
+  border-collapse: collapse;
+  border-bottom: 1px solid var(--mid-gray);
+}
+
+.food-basket-table .col-actions {
+  text-align: center;
+}
+
+.basket-food-row input {
+  width: 75px;
+  text-align: center;
+}
+
+.basket-food-calories span {
+  font-size: 21px;
+  color: var(--orange);
+  font-weight: bold;
 }
 
 .food-row {
@@ -337,7 +378,7 @@ body {
 
 .btn-add-food,
 .btn-log-food,
-.btn-cancel,
+.btn-remove-item,
 .btn-clear-content {
   padding: 5px 1.5rem;
   border: 1px solid var(--orange);
@@ -354,8 +395,26 @@ body {
   border-top: 1px solid var(--mid-gray);
 }
 
-.scroll-wrapper {
-  width: 100%;
+.food-table-wrapper {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.basket-actions-container {
+  border-top: 1px solid var(--mid-gray);
+}
+
+.nutritional-info {
+  padding: 1rem 0;
+  background-color: var(--light-gray);
+}
+
+.basket-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  margin: auto;
+  padding: 0.5rem 0;
 }
 
 .food-serving {
@@ -370,4 +429,60 @@ body {
   background-color: var(--dark-gray);
   color: var(--white);
   width: max-content;
+}
+
+.calorie-total {
+  width: 35%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+
+.nutritional-info-totals {
+  display: flex;
+  flex-wrap: wrap;
+  width: 35%;
+  margin: auto;
+}
+
+.nutritional-value {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  border: 1px solid var(--orange);
+  border-radius: 5px;
+  width: calc((100% / 3));
+}
+
+.nutritional-value span {
+  color: red;
+}
+
+.action-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.btn-log-all-food {
+  padding: 5px 1.5rem;
+  cursor: pointer;
+  background-color: var(--yellow);
+  border: 2px solid var(--yellow);
+  border-radius: 5px;
+}
+.btn-cancel {
+  padding: 5px 1.5rem;
+  cursor: pointer;
+  background-color: var(--orange);
+  border: 2px solid var(--orange);
+  border-radius: 5px;
+}
+
+.btn-cancel:hover,
+.btn-log-all-food:hover {
+  background-color: var(--white);
 }

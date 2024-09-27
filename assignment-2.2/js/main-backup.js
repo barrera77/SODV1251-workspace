@@ -1,7 +1,7 @@
 import {
   dateCardTemplate,
   consumptionReportLog,
-  mealLogPage,
+  mealPlanner,
   foodRow,
   basket,
 } from "./templates.js";
@@ -27,7 +27,7 @@ function onInit() {
   //Create the week calendar
   createWeeklyCalendar();
   /* renderMealLog(); */
-  renderMealLog();
+  renderConsumptionLog();
   onHandleAddMealButtons();
 
   /* enable nav menu buttons */
@@ -66,7 +66,7 @@ function createWeeklyCalendar() {
   onSelectDate();
 }
 
-function renderMealLog() {
+function renderConsumptionLog() {
   let logContainer = document.querySelector(".row-three");
   logContainer.innerHTML = "";
   logContainer.innerHTML = consumptionReportLog;
@@ -77,7 +77,7 @@ function onSelectDate() {
 
   weekdayButons.forEach((button) => {
     button.addEventListener("click", () => {
-      renderMealLog();
+      renderConsumptionLog();
     });
   });
 }
@@ -86,7 +86,7 @@ function onHandleAddMealButtons() {
   const addMealButtons = document.querySelectorAll(".btn-add-meal");
   addMealButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      renderMealLogPage();
+      renderMealPlanner();
       onHandleBrowseAllFoodsButton();
       onHandleSearchFoodsButton();
       onHandleButtonBasket();
@@ -95,9 +95,9 @@ function onHandleAddMealButtons() {
   });
 }
 
-function renderMealLogPage() {
+function renderMealPlanner() {
   foodLogWrapper.innerHTML = "";
-  foodLogWrapper.innerHTML = mealLogPage;
+  foodLogWrapper.innerHTML = mealPlanner;
 }
 
 function onHandleBrowseAllFoodsButton() {
@@ -188,8 +188,8 @@ function onHandleButtonBasket() {
 
 function displayBasket() {
   // const foodLogDisplay = document.querySelector(".food-log-display");
-  foodLogWrapper.innerHTML = "";
-  foodLogWrapper.innerHTML = basket;
+  basketContainerWrapper.innerHTML = "";
+  basketContainerWrapper.innerHTML = basket;
 
   //foodLogDisplay.innerHTML = basket;
   renderBasketItems();
@@ -216,7 +216,7 @@ function renderBasketItems() {
 /* menu navigation */
 function onHandleMenuPlannerButton() {
   menuPlanner.addEventListener("click", () => {
-    renderMealLogPage();
+    renderMealPlanner();
     onHandleBrowseAllFoodsButton();
     onHandleSearchFoodsButton();
     onHandleButtonBasket();
