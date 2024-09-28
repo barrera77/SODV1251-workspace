@@ -8,6 +8,7 @@ export const foodData = {
       protein_per_serving: 20,
       fat_per_serving: 18,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ export const foodData = {
       protein_per_serving: 0.5,
       fat_per_serving: 0.3,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 3,
@@ -26,6 +28,7 @@ export const foodData = {
       protein_per_serving: 12,
       fat_per_serving: 10,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 4,
@@ -35,6 +38,7 @@ export const foodData = {
       protein_per_serving: 20,
       fat_per_serving: 13,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 5,
@@ -44,6 +48,7 @@ export const foodData = {
       protein_per_serving: 2.5,
       fat_per_serving: 0.3,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 6,
@@ -53,6 +58,7 @@ export const foodData = {
       protein_per_serving: 6,
       fat_per_serving: 14,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 7,
@@ -62,6 +68,7 @@ export const foodData = {
       protein_per_serving: 31,
       fat_per_serving: 3.6,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 8,
@@ -71,6 +78,7 @@ export const foodData = {
       protein_per_serving: 1.3,
       fat_per_serving: 0.3,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 9,
@@ -80,6 +88,7 @@ export const foodData = {
       protein_per_serving: 3,
       fat_per_serving: 22,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 10,
@@ -89,24 +98,27 @@ export const foodData = {
       protein_per_serving: 6,
       fat_per_serving: 3,
       carbs_per_serving: 0,
+      qty: 1,
     },
     {
       id: 11,
-      name: "Banana",
-      serving_size: "1 medium (118g)",
-      calories_per_serving: 105,
-      protein_per_serving: 1.3,
-      fat_per_serving: 0.3,
-      carbs_per_serving: 27,
+      name: "Pineapple",
+      serving_size: "1 cup (165g)",
+      calories_per_serving: 82,
+      protein_per_serving: 0.9,
+      fat_per_serving: 0.2,
+      carbs_per_serving: 22,
+      qty: 1,
     },
     {
       id: 12,
-      name: "Apple",
-      serving_size: "1 medium (182g)",
-      calories_per_serving: 95,
-      protein_per_serving: 0.5,
+      name: "Pear",
+      serving_size: "1 medium (178g)",
+      calories_per_serving: 101,
+      protein_per_serving: 0.6,
       fat_per_serving: 0.3,
-      carbs_per_serving: 25,
+      carbs_per_serving: 27,
+      qty: 1,
     },
     {
       id: 13,
@@ -116,6 +128,7 @@ export const foodData = {
       protein_per_serving: 1.2,
       fat_per_serving: 0.2,
       carbs_per_serving: 15,
+      qty: 1,
     },
     {
       id: 14,
@@ -125,6 +138,7 @@ export const foodData = {
       protein_per_serving: 1.1,
       fat_per_serving: 0.2,
       carbs_per_serving: 27,
+      qty: 1,
     },
     {
       id: 15,
@@ -134,6 +148,7 @@ export const foodData = {
       protein_per_serving: 1,
       fat_per_serving: 0.5,
       carbs_per_serving: 12,
+      qty: 1,
     },
     {
       id: 16,
@@ -143,6 +158,7 @@ export const foodData = {
       protein_per_serving: 1.1,
       fat_per_serving: 0.5,
       carbs_per_serving: 21,
+      qty: 1,
     },
     {
       id: 17,
@@ -152,6 +168,7 @@ export const foodData = {
       protein_per_serving: 1.4,
       fat_per_serving: 0.4,
       carbs_per_serving: 14,
+      qty: 1,
     },
     {
       id: 18,
@@ -161,15 +178,17 @@ export const foodData = {
       protein_per_serving: 0.9,
       fat_per_serving: 0.2,
       carbs_per_serving: 12,
+      qty: 1,
     },
     {
       id: 19,
-      name: "Avocado",
-      serving_size: "1 medium (150g)",
-      calories_per_serving: 240,
-      protein_per_serving: 3,
-      fat_per_serving: 22,
-      carbs_per_serving: 12,
+      name: "Cucumber",
+      serving_size: "1 cup (104g)",
+      calories_per_serving: 16,
+      protein_per_serving: 0.7,
+      fat_per_serving: 0.1,
+      carbs_per_serving: 4,
+      qty: 1,
     },
     {
       id: 20,
@@ -179,6 +198,7 @@ export const foodData = {
       protein_per_serving: 0.6,
       fat_per_serving: 0.2,
       carbs_per_serving: 5,
+      qty: 1,
     },
     {
       id: 21,
@@ -188,6 +208,7 @@ export const foodData = {
       protein_per_serving: 2.1,
       fat_per_serving: 0.3,
       carbs_per_serving: 25,
+      qty: 1,
     },
     {
       id: 22,
@@ -197,6 +218,7 @@ export const foodData = {
       protein_per_serving: 1.4,
       fat_per_serving: 0.6,
       carbs_per_serving: 35,
+      qty: 1,
     },
     {
       id: 23,
@@ -206,6 +228,7 @@ export const foodData = {
       protein_per_serving: 0.8,
       fat_per_serving: 0.4,
       carbs_per_serving: 10,
+      qty: 1,
     },
     {
       id: 24,
@@ -215,6 +238,7 @@ export const foodData = {
       protein_per_serving: 0.5,
       fat_per_serving: 0.4,
       carbs_per_serving: 15,
+      qty: 1,
     },
     {
       id: 25,
@@ -224,6 +248,7 @@ export const foodData = {
       protein_per_serving: 2.8,
       fat_per_serving: 27,
       carbs_per_serving: 12,
+      qty: 1,
     },
     {
       id: 26,
@@ -233,6 +258,7 @@ export const foodData = {
       protein_per_serving: 0.4,
       fat_per_serving: 0.2,
       carbs_per_serving: 9,
+      qty: 1,
     },
     {
       id: 27,
@@ -242,6 +268,7 @@ export const foodData = {
       protein_per_serving: 0.5,
       fat_per_serving: 0.2,
       carbs_per_serving: 18,
+      qty: 1,
     },
     {
       id: 28,
@@ -251,6 +278,7 @@ export const foodData = {
       protein_per_serving: 0.5,
       fat_per_serving: 0.1,
       carbs_per_serving: 4,
+      qty: 1,
     },
     {
       id: 29,
@@ -260,6 +288,7 @@ export const foodData = {
       protein_per_serving: 1.5,
       fat_per_serving: 0.3,
       carbs_per_serving: 15,
+      qty: 1,
     },
     {
       id: 30,
@@ -269,6 +298,7 @@ export const foodData = {
       protein_per_serving: 0.4,
       fat_per_serving: 0.1,
       carbs_per_serving: 4,
+      qty: 1,
     },
     {
       id: 31,
@@ -278,6 +308,7 @@ export const foodData = {
       protein_per_serving: 0.5,
       fat_per_serving: 0.2,
       carbs_per_serving: 8,
+      qty: 1,
     },
     {
       id: 32,
@@ -287,6 +318,7 @@ export const foodData = {
       protein_per_serving: 1.5,
       fat_per_serving: 0.3,
       carbs_per_serving: 14,
+      qty: 1,
     },
     {
       id: 33,
@@ -296,6 +328,7 @@ export const foodData = {
       protein_per_serving: 1.8,
       fat_per_serving: 0.2,
       carbs_per_serving: 20,
+      qty: 1,
     },
     {
       id: 34,
@@ -305,6 +338,7 @@ export const foodData = {
       protein_per_serving: 0.5,
       fat_per_serving: 0.1,
       carbs_per_serving: 7,
+      qty: 1,
     },
     {
       id: 35,
@@ -314,6 +348,7 @@ export const foodData = {
       protein_per_serving: 0.9,
       fat_per_serving: 0.2,
       carbs_per_serving: 12,
+      qty: 1,
     },
     {
       id: 36,
@@ -323,6 +358,7 @@ export const foodData = {
       protein_per_serving: 0.6,
       fat_per_serving: 0.1,
       carbs_per_serving: 6,
+      qty: 1,
     },
     {
       id: 37,
@@ -332,6 +368,7 @@ export const foodData = {
       protein_per_serving: 2.3,
       fat_per_serving: 0.2,
       carbs_per_serving: 24,
+      qty: 1,
     },
     {
       id: 38,
@@ -341,15 +378,17 @@ export const foodData = {
       protein_per_serving: 2,
       fat_per_serving: 0.2,
       carbs_per_serving: 12,
+      qty: 1,
     },
     {
       id: 39,
-      name: "Broccoli",
-      serving_size: "1 cup (91g)",
-      calories_per_serving: 55,
-      protein_per_serving: 4,
-      fat_per_serving: 0.6,
-      carbs_per_serving: 11,
+      name: "Cauliflower",
+      serving_size: "1 cup (100g)",
+      calories_per_serving: 25,
+      protein_per_serving: 1.9,
+      fat_per_serving: 0.3,
+      carbs_per_serving: 5,
+      qty: 1,
     },
     {
       id: 40,
@@ -359,6 +398,7 @@ export const foodData = {
       protein_per_serving: 0.9,
       fat_per_serving: 0.1,
       carbs_per_serving: 1,
+      qty: 1,
     },
     {
       id: 41,
@@ -368,6 +408,7 @@ export const foodData = {
       protein_per_serving: 2.9,
       fat_per_serving: 0.5,
       carbs_per_serving: 7,
+      qty: 1,
     },
     {
       id: 42,
@@ -377,6 +418,7 @@ export const foodData = {
       protein_per_serving: 2,
       fat_per_serving: 0.3,
       carbs_per_serving: 5,
+      qty: 1,
     },
     {
       id: 43,
@@ -386,6 +428,7 @@ export const foodData = {
       protein_per_serving: 1,
       fat_per_serving: 0.2,
       carbs_per_serving: 6,
+      qty: 1,
     },
     {
       id: 44,
@@ -395,6 +438,7 @@ export const foodData = {
       protein_per_serving: 2.4,
       fat_per_serving: 0.6,
       carbs_per_serving: 7,
+      qty: 1,
     },
     {
       id: 45,
@@ -404,6 +448,7 @@ export const foodData = {
       protein_per_serving: 2,
       fat_per_serving: 0.3,
       carbs_per_serving: 11,
+      qty: 1,
     },
     {
       id: 46,
@@ -413,6 +458,7 @@ export const foodData = {
       protein_per_serving: 3,
       fat_per_serving: 0.2,
       carbs_per_serving: 5,
+      qty: 1,
     },
     {
       id: 47,
@@ -422,6 +468,7 @@ export const foodData = {
       protein_per_serving: 3,
       fat_per_serving: 0.3,
       carbs_per_serving: 8,
+      qty: 1,
     },
     {
       id: 48,
@@ -431,6 +478,7 @@ export const foodData = {
       protein_per_serving: 4.2,
       fat_per_serving: 0.2,
       carbs_per_serving: 14,
+      qty: 1,
     },
     {
       id: 49,
@@ -440,6 +488,7 @@ export const foodData = {
       protein_per_serving: 2,
       fat_per_serving: 0.2,
       carbs_per_serving: 10,
+      qty: 1,
     },
     {
       id: 50,
@@ -449,6 +498,107 @@ export const foodData = {
       protein_per_serving: 4.2,
       fat_per_serving: 0.4,
       carbs_per_serving: 11,
+      qty: 1,
+    },
+    {
+      id: 51,
+      name: "Chicken Burrito",
+      serving_size: "1 burrito (250g)",
+      calories_per_serving: 550,
+      protein_per_serving: 35,
+      fat_per_serving: 22,
+      carbs_per_serving: 55,
+      qty: 1,
+    },
+    {
+      id: 52,
+      name: "Beef Taco",
+      serving_size: "1 taco (120g)",
+      calories_per_serving: 226,
+      protein_per_serving: 12,
+      fat_per_serving: 13,
+      carbs_per_serving: 18,
+      qty: 1,
+    },
+    {
+      id: 53,
+      name: "Spaghetti Bolognese",
+      serving_size: "1 plate (300g)",
+      calories_per_serving: 450,
+      protein_per_serving: 20,
+      fat_per_serving: 15,
+      carbs_per_serving: 60,
+      qty: 1,
+    },
+    {
+      id: 54,
+      name: "Pad Thai",
+      serving_size: "1 plate (400g)",
+      calories_per_serving: 600,
+      protein_per_serving: 26,
+      fat_per_serving: 20,
+      carbs_per_serving: 85,
+      qty: 1,
+    },
+    {
+      id: 55,
+      name: "Cheeseburger",
+      serving_size: "1 burger (150g)",
+      calories_per_serving: 300,
+      protein_per_serving: 16,
+      fat_per_serving: 18,
+      carbs_per_serving: 27,
+      qty: 1,
+    },
+    {
+      id: 56,
+      name: "Pepperoni Pizza",
+      serving_size: "1 slice (120g)",
+      calories_per_serving: 285,
+      protein_per_serving: 12,
+      fat_per_serving: 10,
+      carbs_per_serving: 36,
+      qty: 1,
+    },
+    {
+      id: 57,
+      name: "Beef Burrito Bowl",
+      serving_size: "1 bowl (300g)",
+      calories_per_serving: 600,
+      protein_per_serving: 35,
+      fat_per_serving: 20,
+      carbs_per_serving: 65,
+      qty: 1,
+    },
+    {
+      id: 58,
+      name: "Shrimp Fried Rice",
+      serving_size: "1 plate (350g)",
+      calories_per_serving: 500,
+      protein_per_serving: 22,
+      fat_per_serving: 16,
+      carbs_per_serving: 70,
+      qty: 1,
+    },
+    {
+      id: 59,
+      name: "Lasagna",
+      serving_size: "1 piece (250g)",
+      calories_per_serving: 420,
+      protein_per_serving: 21,
+      fat_per_serving: 24,
+      carbs_per_serving: 30,
+      qty: 1,
+    },
+    {
+      id: 60,
+      name: "Ramen Noodles",
+      serving_size: "1 bowl (400g)",
+      calories_per_serving: 450,
+      protein_per_serving: 12,
+      fat_per_serving: 14,
+      carbs_per_serving: 60,
+      qty: 1,
     },
   ],
 };

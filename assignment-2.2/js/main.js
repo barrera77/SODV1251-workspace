@@ -6,6 +6,7 @@ import {
   foodRow,
   basket,
   basketFoodRow,
+  loggedFoodRow,
 } from "./templates.js";
 
 import { foodData } from "./data.js";
@@ -14,18 +15,37 @@ import { foodData } from "./data.js";
 const mainContainer = document.querySelector(".row-three");
 const dateContainer = document.querySelector(".date");
 const menuPlanner = document.querySelector(".btn-menu-planner");
+const remainingCalories = document.querySelector(".remaining-calories");
+const calorieIntake = document.querySelector(".calorie-intake");
+const progressBar = document.querySelector(".inner-bar");
 
 // Food data
 const data = foodData["meal-data"];
 
-// Basket items
+//Variables
 let foodBasket = [];
 let basketItemsCount = 0;
 let foodServingQty = 1;
+let calorieCount = 0;
+let loggedFood = [];
+let currentLocation = ""; //track current location
+let selectedMeal = ""; //track selected meal
+const meals = {
+  //Store the food items for the selected meal for later process
+  breakfast: [],
+  lunch: [],
+  dinner: [],
+  snack: [],
+};
 
-// Initialize the application
+/**
+ * Initialize the application and required initial logic
+ */
 function onInit() {
   const today = new Date();
+
+  currentLocation = "Home";
+  console.log(currentLocation);
 
   // Display today's date
   dateContainer.textContent = `Today: ${today.toDateString()}`;
@@ -101,12 +121,23 @@ function renderConsumptionLog() {
 //Handle AddMealButtons click event
 function handleAddMealButtons(event) {
   if (event.target.classList.contains("btn-add-meal")) {
+    selectedMeal = event.target.classList.contains("lunch")
+      ? "lunch"
+      : event.target.classList.contains("dinner")
+      ? "dinner"
+      : event.target.classList.contains("snack")
+      ? "snack"
+      : "breakfast";
     renderMealPlanner();
+    console.log(selectedMeal);
   }
 }
 
 //Render the Meal log Page component
 function renderMealPlanner() {
+  currentLocation = "Meal Planner";
+  console.log(currentLocation);
+
   const mealPlannerElement = document.querySelector(".meal-log-page");
   const componentToHide = document.querySelector(".consumption-log");
 
@@ -194,6 +225,8 @@ function searchFoods(query) {
   }
 }
 
+//TODO: revise btn-add-food as it does not display the information correctly
+
 //Handle AddFoodButtons to basket click event
 function handleAddFoodButtons() {
   const btnAddFood = document.querySelectorAll(".btn-add-food");
@@ -204,12 +237,33 @@ function handleAddFoodButtons() {
       onAddFoodToBasket(food);
     });
   });
+
+  /* document.querySelectorAll('.add-food-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const foodId = this.dataset.foodId; // Assuming the button has a data attribute for food ID
+      const foodToAdd = foodItems.find(item => item.id === parseInt(foodId));
+      onAddFoodToBasket(foodToAdd);
+    });
+  }); */
 }
 
 /* Add food items to the basket component */
 function onAddFoodToBasket(food) {
   if (food != null) {
-    foodBasket.push(food);
+    let duplicatedFoodItem = foodBasket.find((item) => item.id === food.id);
+    if (!duplicatedFoodItem) {
+      food.qty = 1;
+      foodBasket.push(food);
+    } else {
+      duplicatedFoodItem.qty += 1;
+      duplicatedFoodItem.calories_per_serving =
+        duplicatedFoodItem.calories_per_serving * duplicatedFoodItem.qty;
+
+      console.log(
+        `Updated qty for ${duplicatedFoodItem.name}: ${duplicatedFoodItem.qty}`
+      );
+    }
+
     basketItemsCount = foodBasket.length;
 
     const basketItemCounter = document.querySelector(".basket-items");
@@ -231,6 +285,8 @@ function handleButtonBasket(event) {
 
 //display Basket component
 function displayBasket() {
+  currentLocation = "Basket";
+  console.log(currentLocation);
   const basketContainer = document.querySelector(".basket-container");
   const componentToHide = document.querySelector(".meal-log-page");
 
@@ -242,13 +298,16 @@ function displayBasket() {
     mainContainer.innerHTML += basket;
     renderBasketItems();
     mainContainer.addEventListener("click", handleButtonCancel);
+    mainContainer.addEventListener("click", handleLogAllFoodButtons);
   } else {
     toggleComponent(".basket-container", ".meal-log-page");
     renderBasketItems();
   }
 }
 
-//render the basket items to the basket component
+/**
+ * render the basket items to the basket component
+ */
 function renderBasketItems() {
   const basketContent = document.querySelector(".basket-content");
   basketContent.innerHTML = "";
@@ -263,11 +322,15 @@ function renderBasketItems() {
 
   handleQuantityInputs();
   handleRemoveItemButton();
+  handleLogFoodButtons();
+  countTotalCalories();
+  updateProgressBar();
 }
 
-/* handle the inputs for the serving quantity for each food item
-and perform operations to update the Kcal amount and dusplay it.
-*/
+/**
+ * handle the inputs for the serving quantity for each food item
+ * and perform operations to update the Kcal amount and dusplay it.
+ */
 function handleQuantityInputs() {
   const quantities = document.querySelectorAll(".input-qty");
   quantities.forEach((quantity, index) => {
@@ -280,11 +343,17 @@ function handleQuantityInputs() {
         .closest("tr")
         .querySelector(".basket-food-calories span");
       kcalQty.textContent = food.calories * newQty;
+      countTotalCalories();
+      updateProgressBar();
     });
   });
 }
 
-//Clear the food display contents
+/**
+ * handle claer button and add event listener through event delegation
+ * to clear the food display contents
+ * @param {*} event
+ */
 function handleButtonClearContent(event) {
   if (event.target.classList.contains("btn-clear-content")) {
     const foodLogDisplay = document.querySelector(".food-log-display");
@@ -292,21 +361,44 @@ function handleButtonClearContent(event) {
   }
 }
 
-//Cancel food logging and return to home
+/**
+ * Cancel food logging and return to home
+ * @param {*} event
+ */
 function handleButtonBackToHome(event) {
-  if (event.target.classList.contains("btn-back-to-home")) {
+  if (
+    event.target.classList.contains("btn-back-to-home") &&
+    currentLocation === "Meal Planner"
+  ) {
     toggleComponent(".consumption-log", ".meal-log-page");
+    renderLooggedFoodItems();
+    currentLocation = "Home";
+  } else if (
+    event.target.classList.contains("btn-back-to-home") &&
+    currentLocation === "Basket"
+  ) {
+    toggleComponent(".consumption-log", ".basket-container");
+    renderLooggedFoodItems();
+    currentLocation = "Home";
   }
 }
-
+/**
+ * cancel food logging without disposing current items and go back to the planner
+ * @param {*} event
+ */
 function handleButtonCancel(event) {
   if (event.target.classList.contains("btn-cancel")) {
     toggleComponent(".meal-log-page", ".basket-container");
     const foodLogDisplay = document.querySelector(".food-log-display");
     foodLogDisplay.innerHTML = "";
+    currentLocation = "Meal Planner";
   }
 }
 
+/**
+ * Handle remove item buttons logic to remove the selected food
+ * items on click
+ */
 function handleRemoveItemButton() {
   const removeItemButtons = document.querySelectorAll(".btn-remove-item");
   removeItemButtons.forEach((button) => {
@@ -317,7 +409,10 @@ function handleRemoveItemButton() {
   });
 }
 
-//remove food item from the basket
+/**
+ * Remove individual food items from the basket
+ * @param {*} food
+ */
 function removeFoodItemFromBasket(food) {
   if (food != null) {
     foodBasket = foodBasket.filter((item) => item.name !== food.name);
@@ -330,7 +425,122 @@ function removeFoodItemFromBasket(food) {
   }
 }
 
-/* toggle between components */
+/**
+ * Update the calorie totals
+ */
+function countTotalCalories() {
+  calorieCount = 0;
+  const basketFoodCalories = document.querySelectorAll(".basket-food-calories");
+  const totalCalories = document.querySelector(".total-calories");
+
+  /* TODO: modify function to only update the basket totals and
+  separate the logic that updates the totals for the cal tracker
+  */
+  basketFoodCalories.forEach((foodCalorie) => {
+    const kcalTotal = foodCalorie
+      .closest("tr")
+      .querySelector(".basket-food-calories span");
+    calorieCount += parseInt(kcalTotal.textContent);
+    totalCalories.textContent = calorieCount;
+    remainingCalories.textContent = 2400 - calorieCount;
+    calorieIntake.textContent = calorieCount;
+    console.log("Calorie count total ", calorieCount);
+  });
+}
+
+/**
+ * Handle the  food logging buttons logic process
+ */
+function handleLogFoodButtons() {
+  const logFoodButtons = document.querySelectorAll(".btn-log-food");
+  logFoodButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const food = JSON.parse(event.target.dataset.food);
+      addFoodToLog(food);
+    });
+  });
+}
+
+/**
+ * Move the selected food individually to the food log array
+ * @param {*} food
+ */
+function addFoodToLog(food) {
+  if (food != null && selectedMeal) {
+    meals[selectedMeal].push(food);
+
+    //remove the food from the basket
+    removeFoodItemFromBasket(food);
+    console.log(
+      `"Food added to ${selectedMeal}:  ${meals[selectedMeal].length}"`
+    );
+  }
+}
+
+/**
+ * Handle the log all food buttons logic and add event listeners
+ * through event delegation
+ * @param {*} event
+ */
+function handleLogAllFoodButtons(event) {
+  if (event.target.classList.contains("btn-log-all-food")) {
+    //Transfer all item from the basket
+    addAllfoodsToLog(foodBasket);
+
+    //Empty the basket
+    foodBasket = [];
+    //Update basket
+    renderBasketItems();
+  }
+}
+
+/**
+ * Display the logged food items in the consumption
+ *  report log/home page
+ */
+function renderLooggedFoodItems() {
+  const selectedMealContainer = document.querySelector(
+    `.${selectedMeal}-meal-container`
+  );
+  if (selectedMealContainer) {
+    selectedMealContainer.innerHTML = "";
+
+    loggedFood = [...meals[selectedMeal]];
+
+    loggedFood.forEach((foodItem) => {
+      selectedMealContainer.innerHTML += loggedFoodRow(foodItem);
+    });
+  }
+}
+
+/**
+ * Transfer all food items from the basket to the food log array
+ * @param {*} foodArray
+ */
+function addAllfoodsToLog(foodArray) {
+  const basketContent = document.querySelector(".basket-content");
+  if (foodArray.length > 0 && selectedMeal) {
+    meals[selectedMeal] = [...foodArray];
+
+    console.log(meals[selectedMeal].length);
+  } else {
+    basketContent.innerHTML = "Basket is empty, no items to log";
+  }
+}
+
+/**
+ * Update the progress bar for the calorie tracker
+ */
+function updateProgressBar() {
+  const progress = ((2400 - calorieCount) / 2400) * 100;
+  progressBar.style.width = progress + "%";
+}
+
+/**
+ * toggle between components simulating a SPA
+ * @param {*} showComponent
+ * @param {*} hideComponent
+ */
 function toggleComponent(showComponent, hideComponent) {
   //togle selected component
   const componentToShow = document.querySelector(showComponent);
@@ -346,9 +556,15 @@ function toggleComponent(showComponent, hideComponent) {
 }
 
 //#region navigation menu
+
+/**
+ * Handle the logic for the menu "Planner" button to render
+ * the meal planner view
+ */
 function handleMenuPlannerButton() {
   menuPlanner.addEventListener("click", () => {
     renderMealPlanner();
+    currentLocation = "Meal Planner";
   });
 }
 //#endregion

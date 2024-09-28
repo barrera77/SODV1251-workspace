@@ -16,18 +16,18 @@ export const consumptionReportLog = `
         <button class="btn-add-meal breakfast">
           Breakfast<span><i class="fa fa-plus"></i></span>
         </button>
-        <p>Cals</p>
+        <p class="log-cals-display">Cals</p>
       </div>
-      <div class="meal-container">Add food here</div>
+      <div class="meal-container breakfast-meal-container">Add food here</div>
     </div>
     <div class="meal-col">
       <div class="card meal-card">
         <button class="btn-add-meal lunch">
           Lunch<span><i class="fa fa-plus"></i></span>
         </button>
-        <p>Cals</p>
+        <p class="log-cals-display">Cals</p>
       </div>
-      <div class="meal-container">Add food here</div>
+      <div class="meal-container lunch-meal-container">Add food here</div>
     </div>
   </div>
   <div class="consumption-log-row">
@@ -36,18 +36,18 @@ export const consumptionReportLog = `
         <button class="btn-add-meal dinner">
           Dinner<span><i class="fa fa-plus"></i></span>
         </button>
-        <p>Cals</p>
+        <p class="log-cals-display">Cals</p>
       </div>
-      <div class="meal-container">Add food here</div>
+      <div class="meal-container dinner-meal-container">Add food here</div>
     </div>
     <div class="meal-col">
       <div class="card meal-card">
         <button class="btn-add-meal snack">
           Snack<span><i class="fa fa-plus"></i></span>
         </button>
-        <p>Cals</p>
+        <p class="log-cals-display">Cals</p>
       </div>
-      <div class="meal-container">Add food here</div>
+      <div class="meal-container snack-meal-container">Add food here</div>
     </div>
   </div>
 </div>
@@ -103,7 +103,12 @@ export const foodRow = (food) => `
 
 export const basket = `
   <div class="basket-container">
+    <div class="basket-container-header">
+      <button class="fa fa-home btn-back-to-home">
+      </button>
     <h2>Food Basket</h2>
+    </div>
+
     <div class="food-table-wrapper">
       <table class="food-basket-table">
         <thead >
@@ -132,27 +137,41 @@ export const basket = `
       </div>
       <div class="basket-actions">
         <button class="btn-log-all-food">Log All Food</button>
-        <button class="btn-cancel">Cancel</button>
+        <button class="btn-cancel">Back</button>
       </div>
     </div>
   </div>
 `;
 
-export const basketFoodRow = (food, qty) => `
+export const basketFoodRow = (food) => `
   <tr class="basket-food-row">
     <td>${food.serving_size}</td>
-    <td><input class="input-qty" type="number" value="${qty}" /></td >
+    <td><input class="input-qty" type="number" value="${food.qty}" /></td >
     <td><h3 class="food-name"><strong>${food.name}</strong></h3></td>
     <td><p class="basket-food-calories"><span>${
-      food.calories * qty
+      food.calories * food.qty
     }</span></p></td>
     <td>
       <div class="action-buttons-container">
-        <button class="btn-log-food">Log Food</button>
+        <button class="btn-log-food" data-food='${JSON.stringify(
+          food
+        )}'>Log Food</button>
         <button class="btn-remove-item" data-food='${JSON.stringify(
           food
         )}'>Remove</button>
       </div>
     </td>
   </tr>
+`;
+
+export const loggedFoodRow = (food) => `
+ <div class="looged-food-row">
+    <div class="logged-food-card">
+      <div class="logged-food-details">
+        <p class="col-one">${food.serving_size} x ${food.qty}</p>
+        <p class="col-two"><strong>${food.name}</strong></p>
+        <p class="col-three">${food.calories * food.qty}</p>
+      </div>
+    </div>
+  </div>
 `;

@@ -188,6 +188,11 @@ body {
   gap: 1rem;
 }
 
+.meal-container {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
 .meal-col {
   width: calc(100% / 2);
   border: 1px solid var(--mid-gray);
@@ -199,7 +204,6 @@ body {
 .meal-col .card {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dotted var(--dark-gray);
 }
 
 .meal-card span {
@@ -216,6 +220,11 @@ body {
   position: absolute;
   left: 15%;
   top: 10%;
+}
+.meal-card {
+  padding-right: 1rem;
+  background-color: var(--light-gray);
+  border-radius: 2px;
 }
 
 .btn-add-meal {
@@ -400,6 +409,12 @@ body {
   max-height: 250px;
 }
 
+.basket-container-header {
+  display: flex;
+  width: 55%;
+  justify-content: space-between;
+}
+
 .basket-actions-container {
   border-top: 1px solid var(--mid-gray);
 }
@@ -485,4 +500,29 @@ body {
 .btn-cancel:hover,
 .btn-log-all-food:hover {
   background-color: var(--white);
+}
+
+.looged-food-row {
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--mid-gray);
+  padding-right: 1rem;
+}
+
+.logged-food-details {
+  display: flex;
+}
+
+.col-two {
+  text-align: center;
+}
+
+.col-one,
+.col-two {
+  width: 40%;
+}
+
+.col-three {
+  width: 20%;
+  text-align: end;
 }
