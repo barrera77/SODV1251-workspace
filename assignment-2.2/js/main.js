@@ -14,10 +14,12 @@ import { foodData } from "./data.js";
 // Selectors for main components
 const mainContainer = document.querySelector(".row-three");
 const dateContainer = document.querySelector(".date");
-const menuPlanner = document.querySelector(".btn-menu-planner");
 const remainingCalories = document.querySelector(".remaining-calories");
 const calorieIntake = document.querySelector(".calorie-intake");
 const progressBar = document.querySelector(".inner-bar");
+const proteinAmount = document.querySelector(".protein-amount");
+const fatAmount = document.querySelector(".fat-amount");
+const carbsAmount = document.querySelector(".carbs-amount");
 
 // Food data
 const data = foodData["meal-data"];
@@ -49,7 +51,7 @@ function onInit() {
 
   // Display today's date
   dateContainer.textContent = `Today: ${today.toDateString()}`;
-  handleMenuPlannerButton();
+
   // Create the week calendar
   createWeeklyCalendar();
 
@@ -91,19 +93,90 @@ function createWeeklyCalendar() {
   onSelectDate();
 }
 
+/**
+ * Sort/shuffle the food data array using the
+ * Fisher-Yates (Knuth) Shuffle algorithm,
+ * @param {*} array
+ * @returns
+ */
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}
+
+function getRandomMeals(data, mealCount) {
+  const randomizedData = shuffleArray([...data]);
+  return randomizedData.slice(0, mealCount);
+}
+
+function generateDailyRandomMeals() {
+  //get the containers
+  const breakfastMealContainer = document.querySelector(
+    ".breakfast-meal-container"
+  );
+  const lunchMealContainer = document.querySelector(".lunch-meal-container");
+  const dinnerMealContainer = document.querySelector(".dinner-meal-container");
+  const snacksMealContainer = document.querySelector(".snacks-meal-container");
+  //prepare data
+  const randomMeals = {
+    breakfast: getRandomMeals(data, 4),
+    lunch: getRandomMeals(data, 4),
+    dinner: getRandomMeals(data, 4),
+    snacks: getRandomMeals(data, 3),
+  };
+
+  breakfastMealContainer.innerHTML = "";
+  randomMeals.breakfast.forEach((breakfastItem) => {
+    breakfastMealContainer.innerHTML += loggedFoodRow(breakfastItem);
+
+    console.log(breakfastItem);
+  });
+
+  lunchMealContainer.innerHTML = "";
+  randomMeals.lunch.forEach((lunchItem) => {
+    lunchMealContainer.innerHTML += loggedFoodRow(lunchItem);
+  });
+
+  dinnerMealContainer.innerHTML = "";
+  randomMeals.dinner.forEach((dinnerItem) => {
+    dinnerMealContainer.innerHTML += loggedFoodRow(dinnerItem);
+  });
+
+  snacksMealContainer.innerHTML = "";
+  randomMeals.snacks.forEach((snackItem) => {
+    snacksMealContainer.innerHTML += loggedFoodRow(snackItem);
+  });
+
+  /* TODO: need to update all calorie and nutrient counters  */
+}
+
 /*Render the consumption log for the selected date */
 function onSelectDate() {
-  const weekdayButons = document.querySelectorAll(".btn-weekday");
+  const weekdayButtons = document.querySelectorAll(".btn-weekday");
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  weekdayButons.forEach((button) => {
+  const currentDate = new Date();
+  const currentDayOfWeek = currentDate.getDay();
+
+  weekdayButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      /* TODO: render the historical consumption log for the actual
-      selected date as for now it's only rendering the generic log.
-      HINT: might need to disable the add food buttons for the
-      historical data since it's already in the past and there is no
-      point on altering the data
-      */
-      renderConsumptionLog();
+      const selectedDayOfTheWeek =
+        button.querySelector(".week-day").textContent;
+      const dateIndex = daysOfWeek.indexOf(selectedDayOfTheWeek);
+
+      console.log(
+        `Selected Day of Week: ${selectedDayOfTheWeek}, ${dateIndex}`
+      );
+
+      if (dateIndex < currentDayOfWeek) {
+        generateDailyRandomMeals();
+      } else {
+        renderConsumptionLog();
+      }
     });
   });
 }
@@ -116,6 +189,12 @@ function renderConsumptionLog() {
   /* Attach event listeners to add meal buttons through 
   event delegation. */
   mainContainer.addEventListener("click", handleAddMealButtons);
+
+  const calorieDisplayElements = document.querySelectorAll(".log-cals-display");
+
+  calorieDisplayElements.forEach((display) => {
+    display.textContent = 0;
+  });
 }
 
 //Handle AddMealButtons click event
@@ -184,7 +263,7 @@ function displayAllFoods() {
     foodLogDisplay.innerHTML += foodRow({
       name: food.name,
       serving_size: food.serving_size,
-      calories: food.calories_per_serving,
+      calories_per_serving: food.calories_per_serving,
     });
   });
   handleAddFoodButtons();
@@ -210,7 +289,7 @@ function displaySearchedFoods() {
     foodLogDisplay.innerHTML += foodRow({
       name: food.name,
       serving_size: food.serving_size,
-      calories: food.calories_per_serving,
+      calories_per_serving: food.calories_per_serving,
     });
   });
   handleAddFoodButtons();
@@ -237,20 +316,12 @@ function handleAddFoodButtons() {
       onAddFoodToBasket(food);
     });
   });
-
-  /* document.querySelectorAll('.add-food-button').forEach(button => {
-    button.addEventListener('click', function() {
-      const foodId = this.dataset.foodId; // Assuming the button has a data attribute for food ID
-      const foodToAdd = foodItems.find(item => item.id === parseInt(foodId));
-      onAddFoodToBasket(foodToAdd);
-    });
-  }); */
 }
 
 /* Add food items to the basket component */
 function onAddFoodToBasket(food) {
   if (food != null) {
-    let duplicatedFoodItem = foodBasket.find((item) => item.id === food.id);
+    let duplicatedFoodItem = foodBasket.find((item) => item.name === food.name);
     if (!duplicatedFoodItem) {
       food.qty = 1;
       foodBasket.push(food);
@@ -258,10 +329,6 @@ function onAddFoodToBasket(food) {
       duplicatedFoodItem.qty += 1;
       duplicatedFoodItem.calories_per_serving =
         duplicatedFoodItem.calories_per_serving * duplicatedFoodItem.qty;
-
-      console.log(
-        `Updated qty for ${duplicatedFoodItem.name}: ${duplicatedFoodItem.qty}`
-      );
     }
 
     basketItemsCount = foodBasket.length;
@@ -270,9 +337,6 @@ function onAddFoodToBasket(food) {
     if (basketItemCounter) {
       basketItemCounter.textContent = basketItemsCount;
     }
-
-    console.log("Food added to basket:", foodBasket);
-    console.log(basketItemsCount);
   }
 }
 
@@ -324,7 +388,6 @@ function renderBasketItems() {
   handleRemoveItemButton();
   handleLogFoodButtons();
   countTotalCalories();
-  updateProgressBar();
 }
 
 /**
@@ -342,9 +405,8 @@ function handleQuantityInputs() {
       const kcalQty = quantity
         .closest("tr")
         .querySelector(".basket-food-calories span");
-      kcalQty.textContent = food.calories * newQty;
+      kcalQty.textContent = food.calories_per_serving * newQty;
       countTotalCalories();
-      updateProgressBar();
     });
   });
 }
@@ -416,12 +478,16 @@ function handleRemoveItemButton() {
 function removeFoodItemFromBasket(food) {
   if (food != null) {
     foodBasket = foodBasket.filter((item) => item.name !== food.name);
-    console.log(foodBasket);
     renderBasketItems(); //update the basket
 
     //update the basket item counter
     const basketItemCounter = document.querySelector(".basket-items");
     basketItemCounter.textContent = foodBasket.length;
+
+    const totalCalories = document.querySelector(".total-calories");
+    if (foodBasket.length === 0) {
+      totalCalories.textContent = foodBasket.length;
+    }
   }
 }
 
@@ -433,18 +499,16 @@ function countTotalCalories() {
   const basketFoodCalories = document.querySelectorAll(".basket-food-calories");
   const totalCalories = document.querySelector(".total-calories");
 
-  /* TODO: modify function to only update the basket totals and
-  separate the logic that updates the totals for the cal tracker
-  */
   basketFoodCalories.forEach((foodCalorie) => {
     const kcalTotal = foodCalorie
       .closest("tr")
       .querySelector(".basket-food-calories span");
     calorieCount += parseInt(kcalTotal.textContent);
     totalCalories.textContent = calorieCount;
-    remainingCalories.textContent = 2400 - calorieCount;
-    calorieIntake.textContent = calorieCount;
-    console.log("Calorie count total ", calorieCount);
+
+    if (foodBasket.length === 0) {
+      calorieCount = 0;
+    }
   });
 }
 
@@ -471,9 +535,6 @@ function addFoodToLog(food) {
 
     //remove the food from the basket
     removeFoodItemFromBasket(food);
-    console.log(
-      `"Food added to ${selectedMeal}:  ${meals[selectedMeal].length}"`
-    );
   }
 }
 
@@ -510,6 +571,8 @@ function renderLooggedFoodItems() {
     loggedFood.forEach((foodItem) => {
       selectedMealContainer.innerHTML += loggedFoodRow(foodItem);
     });
+
+    updateMainCalorieCounters();
   }
 }
 
@@ -521,19 +584,59 @@ function addAllfoodsToLog(foodArray) {
   const basketContent = document.querySelector(".basket-content");
   if (foodArray.length > 0 && selectedMeal) {
     meals[selectedMeal] = [...foodArray];
-
-    console.log(meals[selectedMeal].length);
   } else {
     basketContent.innerHTML = "Basket is empty, no items to log";
   }
 }
 
 /**
+ * Update nutrient totals
+ */
+function updateMainCalorieCounters() {
+  let caloriesPerMeal = 0;
+  let currentMeals = [];
+  let proteins = 0;
+  let fat = 0;
+  let carbs = 0;
+  meals[selectedMeal].forEach((meal) => {
+    caloriesPerMeal += parseInt(meal.calories_per_serving) * parseInt(meal.qty);
+    currentMeals.push(data.find((food) => food.name === meal.name));
+  });
+
+  const calorieDisplayElement = document.querySelector(
+    `.${selectedMeal}-log-cals-display span`
+  );
+
+  if (calorieDisplayElement) {
+    calorieDisplayElement.textContent = `${caloriesPerMeal} `;
+
+    console.log(caloriesPerMeal);
+
+    calorieIntake.textContent = caloriesPerMeal;
+    updateProgressBar(caloriesPerMeal);
+
+    currentMeals.forEach((meal) => {
+      console.log(meal);
+      proteins += parseFloat(meal.protein_per_serving);
+      fat += parseFloat(meal.fat_per_serving);
+      carbs += parseFloat(meal.carbs_per_serving);
+      proteinAmount.textContent = proteins;
+      fatAmount.textContent = fat;
+      carbsAmount.textContent = carbs;
+    });
+  } else {
+    calorieDisplayElement.textContent = 0;
+  }
+}
+
+/**
  * Update the progress bar for the calorie tracker
  */
-function updateProgressBar() {
-  const progress = ((2400 - calorieCount) / 2400) * 100;
+function updateProgressBar(calories) {
+  const progress = ((2400 - calories) / 2400) * 100;
   progressBar.style.width = progress + "%";
+
+  remainingCalories.textContent = 2400 - calories;
 }
 
 /**
@@ -557,14 +660,4 @@ function toggleComponent(showComponent, hideComponent) {
 
 //#region navigation menu
 
-/**
- * Handle the logic for the menu "Planner" button to render
- * the meal planner view
- */
-function handleMenuPlannerButton() {
-  menuPlanner.addEventListener("click", () => {
-    renderMealPlanner();
-    currentLocation = "Meal Planner";
-  });
-}
 //#endregion

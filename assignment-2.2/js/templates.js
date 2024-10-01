@@ -1,9 +1,14 @@
-export const dateCardTemplate = ({ monthDay, weekDay, highlightCurrentDay }) =>
+export const dateCardTemplate = ({
+  monthDay,
+  weekDay,
+  highlightCurrentDay,
+  fullDate,
+}) =>
   `
 <div class="card date-card">
-    <button class="btn-weekday ${highlightCurrentDay}">
-    <h2 class="month-day">${monthDay}</h2>
-    <p class="week-day">${weekDay}</p>
+    <button class="btn-weekday ${highlightCurrentDay}" data-date="${fullDate}">
+      <h2 class="month-day">${monthDay}</h2>  
+      <span class="week-day">${weekDay}</span>
     </button>
 </div>  
 `;
@@ -16,7 +21,7 @@ export const consumptionReportLog = `
         <button class="btn-add-meal breakfast">
           Breakfast<span><i class="fa fa-plus"></i></span>
         </button>
-        <p class="log-cals-display">Cals</p>
+        <p class="breakfast-log-cals-display"><span class="log-cals-display"></span> Cals</p>
       </div>
       <div class="meal-container breakfast-meal-container">Add food here</div>
     </div>
@@ -25,7 +30,7 @@ export const consumptionReportLog = `
         <button class="btn-add-meal lunch">
           Lunch<span><i class="fa fa-plus"></i></span>
         </button>
-        <p class="log-cals-display">Cals</p>
+        <p class="lunch-log-cals-display"><span class="log-cals-display"></span> Cals</p>
       </div>
       <div class="meal-container lunch-meal-container">Add food here</div>
     </div>
@@ -36,7 +41,7 @@ export const consumptionReportLog = `
         <button class="btn-add-meal dinner">
           Dinner<span><i class="fa fa-plus"></i></span>
         </button>
-        <p class="log-cals-display">Cals</p>
+        <p class="dinner-log-cals-display"><span class="log-cals-display"></span> Cals</p>
       </div>
       <div class="meal-container dinner-meal-container">Add food here</div>
     </div>
@@ -45,9 +50,9 @@ export const consumptionReportLog = `
         <button class="btn-add-meal snack">
           Snack<span><i class="fa fa-plus"></i></span>
         </button>
-        <p class="log-cals-display">Cals</p>
+        <p class="snack-log-cals-display"><span class="log-cals-display"></span> Cals</p>
       </div>
-      <div class="meal-container snack-meal-container">Add food here</div>
+      <div class="meal-container snacks-meal-container">Add food here</div>
     </div>
   </div>
 </div>
@@ -90,7 +95,9 @@ export const foodRow = (food) => `
     <div class="food-details">
       <h3 class="food-name">${food.name}</h3>
       <p class="food-serving">${food.serving_size}</p>
-      <p class="food-calories"><span>${food.calories}</span> calories</p>
+      <p class="food-calories"><span>${
+        food.calories_per_serving
+      }</span> calories</p>
     </div>
     <div class="btn-log-food-container">
       <button class="btn-add-food" data-food='${JSON.stringify(
@@ -129,11 +136,7 @@ export const basket = `
           <p>Total Calories:</p>
           <span class="total-calories">0</span>
         </div>
-        <div class="nutritional-info-totals">
-          <div class="nutritional-value"><span class="protein-count">0</span><p>Proteins</p></div>
-          <div class="nutritional-value"><span class="fat-count">0</span><p>Fat</p></div>
-          <div class="nutritional-value"><span class="carb-count">0</span><p>Carbs</p></div>
-        </div>
+        
       </div>
       <div class="basket-actions">
         <button class="btn-log-all-food">Log All Food</button>
@@ -149,7 +152,7 @@ export const basketFoodRow = (food) => `
     <td><input class="input-qty" type="number" value="${food.qty}" /></td >
     <td><h3 class="food-name"><strong>${food.name}</strong></h3></td>
     <td><p class="basket-food-calories"><span>${
-      food.calories * food.qty
+      food.calories_per_serving * food.qty
     }</span></p></td>
     <td>
       <div class="action-buttons-container">
@@ -170,7 +173,7 @@ export const loggedFoodRow = (food) => `
       <div class="logged-food-details">
         <p class="col-one">${food.serving_size} x ${food.qty}</p>
         <p class="col-two"><strong>${food.name}</strong></p>
-        <p class="col-three">${food.calories * food.qty}</p>
+        <p class="col-three">${food.calories_per_serving * food.qty}</p>
       </div>
     </div>
   </div>
