@@ -52,7 +52,7 @@ export const consumptionReportLog = `
         </button>
         <p class="snack-log-cals-display"><span class="log-cals-display"></span> Cals</p>
       </div>
-      <div class="meal-container snacks-meal-container">Add food here</div>
+      <div class="meal-container snack-meal-container">Add food here</div>
     </div>
   </div>
 </div>

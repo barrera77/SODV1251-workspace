@@ -39,6 +39,10 @@ const meals = {
   dinner: [],
   snack: [],
 };
+let totalCalories = 0;
+let totalProtein = 0;
+let totalCarbs = 0;
+let totalFat = 0;
 
 /**
  * Initialize the application and required initial logic
@@ -120,7 +124,7 @@ function generateDailyRandomMeals() {
   );
   const lunchMealContainer = document.querySelector(".lunch-meal-container");
   const dinnerMealContainer = document.querySelector(".dinner-meal-container");
-  const snacksMealContainer = document.querySelector(".snacks-meal-container");
+  const snacksMealContainer = document.querySelector(".snack-meal-container");
   //prepare data
   const randomMeals = {
     breakfast: getRandomMeals(data, 4),
@@ -132,7 +136,8 @@ function generateDailyRandomMeals() {
   breakfastMealContainer.innerHTML = "";
   randomMeals.breakfast.forEach((breakfastItem) => {
     breakfastMealContainer.innerHTML += loggedFoodRow(breakfastItem);
-
+    meals["breakfast"].push(breakfastItem);
+    updateMainCalorieCounters("breakfast");
     console.log(breakfastItem);
   });
 
@@ -208,6 +213,8 @@ function handleAddMealButtons(event) {
       ? "snack"
       : "breakfast";
     renderMealPlanner();
+    const foodLogDisplay = document.querySelector(".food-log-display");
+    foodLogDisplay.innerHTML = "";
     console.log(selectedMeal);
   }
 }
@@ -303,8 +310,6 @@ function searchFoods(query) {
     return data.filter((food) => food.name.toLowerCase().includes(query));
   }
 }
-
-//TODO: revise btn-add-food as it does not display the information correctly
 
 //Handle AddFoodButtons to basket click event
 function handleAddFoodButtons() {
@@ -572,7 +577,7 @@ function renderLooggedFoodItems() {
       selectedMealContainer.innerHTML += loggedFoodRow(foodItem);
     });
 
-    updateMainCalorieCounters();
+    updateMainCalorieCounters(selectedMeal);
   }
 }
 
@@ -592,19 +597,19 @@ function addAllfoodsToLog(foodArray) {
 /**
  * Update nutrient totals
  */
-function updateMainCalorieCounters() {
+function updateMainCalorieCounters(meal) {
   let caloriesPerMeal = 0;
   let currentMeals = [];
   let proteins = 0;
   let fat = 0;
   let carbs = 0;
-  meals[selectedMeal].forEach((meal) => {
+  meals[meal].forEach((meal) => {
     caloriesPerMeal += parseInt(meal.calories_per_serving) * parseInt(meal.qty);
     currentMeals.push(data.find((food) => food.name === meal.name));
   });
 
   const calorieDisplayElement = document.querySelector(
-    `.${selectedMeal}-log-cals-display span`
+    `.${meal}-log-cals-display span`
   );
 
   if (calorieDisplayElement) {
@@ -612,17 +617,25 @@ function updateMainCalorieCounters() {
 
     console.log(caloriesPerMeal);
 
-    calorieIntake.textContent = caloriesPerMeal;
-    updateProgressBar(caloriesPerMeal);
+    totalCalories += parseInt(calorieDisplayElement.textContent);
+
+    calorieIntake.textContent = totalCalories;
+    updateProgressBar(totalCalories);
 
     currentMeals.forEach((meal) => {
       console.log(meal);
       proteins += parseFloat(meal.protein_per_serving);
+
       fat += parseFloat(meal.fat_per_serving);
       carbs += parseFloat(meal.carbs_per_serving);
-      proteinAmount.textContent = proteins;
-      fatAmount.textContent = fat;
-      carbsAmount.textContent = carbs;
+
+      totalProtein += parseFloat(meal.protein_per_serving);
+      proteinAmount.textContent = totalProtein;
+      totalFat += parseFloat(meal.fat_per_serving);
+      fatAmount.textContent = Math.round(totalFat * 100) / 100;
+
+      totalCarbs += parseFloat(meal.carbs_per_serving);
+      carbsAmount.textContent = totalCarbs;
     });
   } else {
     calorieDisplayElement.textContent = 0;

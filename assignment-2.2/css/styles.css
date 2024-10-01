@@ -29,7 +29,7 @@ body {
 
 .main-wrapper {
   width: 95%;
-  height: 90vh;
+  height: 100vh;
   margin: auto;
   background-color: var(--white);
   display: flex;
@@ -254,7 +254,8 @@ body {
 }
 
 .row-three {
-  max-height: 60%;
+  max-height: 65%;
+  border-bottom: none;
 }
 
 .meal-log-page h2 {
