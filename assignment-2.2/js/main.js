@@ -630,7 +630,7 @@ function updateMainCalorieCounters(meal) {
       carbs += parseFloat(meal.carbs_per_serving);
 
       totalProtein += parseFloat(meal.protein_per_serving);
-      proteinAmount.textContent = totalProtein;
+      proteinAmount.textContent = Math.round(totalProtein * 100) / 100;
       totalFat += parseFloat(meal.fat_per_serving);
       fatAmount.textContent = Math.round(totalFat * 100) / 100;
 
