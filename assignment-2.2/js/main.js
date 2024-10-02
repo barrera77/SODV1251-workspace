@@ -130,15 +130,12 @@ function generateDailyRandomMeals() {
     breakfast: getRandomMeals(data, 4),
     lunch: getRandomMeals(data, 4),
     dinner: getRandomMeals(data, 4),
-    snacks: getRandomMeals(data, 3),
+    snack: getRandomMeals(data, 3),
   };
 
   breakfastMealContainer.innerHTML = "";
   randomMeals.breakfast.forEach((breakfastItem) => {
     breakfastMealContainer.innerHTML += loggedFoodRow(breakfastItem);
-    meals["breakfast"].push(breakfastItem);
-    updateMainCalorieCounters("breakfast");
-    console.log(breakfastItem);
   });
 
   lunchMealContainer.innerHTML = "";
@@ -152,15 +149,48 @@ function generateDailyRandomMeals() {
   });
 
   snacksMealContainer.innerHTML = "";
-  randomMeals.snacks.forEach((snackItem) => {
+  randomMeals.snack.forEach((snackItem) => {
     snacksMealContainer.innerHTML += loggedFoodRow(snackItem);
   });
 
-  /* TODO: need to update all calorie and nutrient counters  */
+  updateCalories(randomMeals);
+}
+
+function updateCalories(randomMeals) {
+  let mealCalories = 0;
+  for (const mealType in randomMeals) {
+    let proteins = 0;
+    let fat = 0;
+    let carbs = 0;
+    let totalCals = 0;
+
+    randomMeals[mealType].forEach((meal) => {
+      mealCalories += parseInt(meal.calories_per_serving) * parseInt(meal.qty);
+      proteins += parseFloat(meal.protein_per_serving);
+      fat += parseFloat(meal.fat_per_serving);
+      carbs += parseFloat(meal.carbs_per_serving);
+      totalCals += mealCalories;
+    });
+
+    proteinAmount.textContent = Math.round(proteins * 100) / 100;
+    fatAmount.textContent = Math.round(fat * 100) / 100;
+    carbsAmount.textContent = Math.round(carbs * 100) / 100;
+
+    const calorieDisplayElement = document.querySelector(
+      `.${mealType}-log-cals-display span`
+    );
+    if (calorieDisplayElement) {
+      calorieDisplayElement.textContent = `${mealCalories} `;
+    }
+
+    calorieIntake.textContent = totalCals;
+    updateProgressBar(totalCals);
+  }
 }
 
 /*Render the consumption log for the selected date */
 function onSelectDate() {
+  const logContainer = document.querySelector(".row-three");
   const weekdayButtons = document.querySelectorAll(".btn-weekday");
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -173,6 +203,7 @@ function onSelectDate() {
         button.querySelector(".week-day").textContent;
       const dateIndex = daysOfWeek.indexOf(selectedDayOfTheWeek);
 
+      navigateCalendar();
       console.log(
         `Selected Day of Week: ${selectedDayOfTheWeek}, ${dateIndex}`
       );
@@ -180,6 +211,7 @@ function onSelectDate() {
       if (dateIndex < currentDayOfWeek) {
         generateDailyRandomMeals();
       } else {
+        logContainer.innerHTML = "";
         renderConsumptionLog();
       }
     });
@@ -215,7 +247,6 @@ function handleAddMealButtons(event) {
     renderMealPlanner();
     const foodLogDisplay = document.querySelector(".food-log-display");
     foodLogDisplay.innerHTML = "";
-    console.log(selectedMeal);
   }
 }
 
@@ -577,7 +608,7 @@ function renderLooggedFoodItems() {
       selectedMealContainer.innerHTML += loggedFoodRow(foodItem);
     });
 
-    updateMainCalorieCounters(selectedMeal);
+    updateMainCalorieCounters();
   }
 }
 
@@ -597,25 +628,23 @@ function addAllfoodsToLog(foodArray) {
 /**
  * Update nutrient totals
  */
-function updateMainCalorieCounters(meal) {
+function updateMainCalorieCounters() {
   let caloriesPerMeal = 0;
   let currentMeals = [];
   let proteins = 0;
   let fat = 0;
   let carbs = 0;
-  meals[meal].forEach((meal) => {
+  meals[selectedMeal].forEach((meal) => {
     caloriesPerMeal += parseInt(meal.calories_per_serving) * parseInt(meal.qty);
     currentMeals.push(data.find((food) => food.name === meal.name));
   });
 
   const calorieDisplayElement = document.querySelector(
-    `.${meal}-log-cals-display span`
+    `.${selectedMeal}-log-cals-display span`
   );
 
   if (calorieDisplayElement) {
     calorieDisplayElement.textContent = `${caloriesPerMeal} `;
-
-    console.log(caloriesPerMeal);
 
     totalCalories += parseInt(calorieDisplayElement.textContent);
 
@@ -623,7 +652,6 @@ function updateMainCalorieCounters(meal) {
     updateProgressBar(totalCalories);
 
     currentMeals.forEach((meal) => {
-      console.log(meal);
       proteins += parseFloat(meal.protein_per_serving);
 
       fat += parseFloat(meal.fat_per_serving);
@@ -642,14 +670,33 @@ function updateMainCalorieCounters(meal) {
   }
 }
 
+function navigateCalendar() {
+  if (currentLocation === "Meal Planner") {
+    toggleComponent(".consumption-log", ".meal-log-page");
+    currentLocation = "Home";
+    console.log(currentLocation);
+  }
+  if (currentLocation === "Basket") {
+    toggleComponent(".consumption-log", ".basket-container");
+    currentLocation = "Home";
+    console.log(currentLocation);
+  }
+}
+
 /**
  * Update the progress bar for the calorie tracker
  */
 function updateProgressBar(calories) {
-  const progress = ((2400 - calories) / 2400) * 100;
-  progressBar.style.width = progress + "%";
+  if (calories > 2400) {
+    progressBar.style.width = 0 + "%";
+    remainingCalories.textContent = 0;
+  } else {
+    const progress = ((2400 - calories) / 2400) * 100;
 
-  remainingCalories.textContent = 2400 - calories;
+    progressBar.style.width = progress + "%";
+
+    remainingCalories.textContent = 2400 - calories;
+  }
 }
 
 /**
