@@ -114,6 +114,12 @@ function shuffleArray(array) {
   return array;
 }
 
+/**
+ * Get the random items to display
+ * @param {*} data
+ * @param {*} mealCount
+ * @returns
+ */
 function getRandomMeals(data, mealCount) {
   const randomizedData = shuffleArray([...data]);
   return randomizedData.slice(0, mealCount);

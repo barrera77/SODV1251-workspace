@@ -1,13 +1,18 @@
-export const foodCard = `
-<div class="col-2">
-    <div class="card">
+export const suggestionsFoodCard = (menuItem) => `
+<div class="col-3">
+    <div class="card suggestions-card">
         <div class="card-image-container">
-            <img src="./assets/images/card-5.webp" alt="Web Design" />
+        <img src="${menuItem.img_url}" alt="food image" />
         </div>
         <div class="card-description">
-            <p>New Acer Nitro V 15.6'' Laptop i7-13620H</p>
+        <div class="d-flex justify-content-between py-2">
+            <p><strong>${menuItem.name}</strong></p>
+            <p><span>$ ${menuItem.price}</span></p>
+        </div>
+        <a href="#" class="text-decoration-none text-success">
+            Order this item
+        </a>
         </div>
     </div>
 </div>
-
 `;

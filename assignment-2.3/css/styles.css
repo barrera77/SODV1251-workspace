@@ -114,6 +114,11 @@ h1 span {
   border-top: 1px solid #ddd;
 }
 
+.suggestions-card .card-description a:hover {
+  text-decoration: underline !important;
+  color: var(--black) !important;
+}
+
 .scroll-wrapper {
   overflow-y: scroll;
 }
