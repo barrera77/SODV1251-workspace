@@ -1,0 +1,42 @@
+:root {
+  --white: #fff;
+  --black: #181818;
+  --mid-green: #5cb85c;
+  --light-green: #85ffbd;
+  --light-gray: #e9e9e9;
+  --mid-gray: #ddd;
+  --dark-gray: #595a5c;
+  --light-yellow: #fffb7d;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-color: #85ffbd;
+  background: linear-gradient(360deg, #85ffbd 0%, #fffb7d 100%);
+}
+
+footer {
+  background: linear-gradient(180deg, #85ffbd 0%, #fffb7d 100%);
+}
+
+.disclaimer {
+  text-align: center;
+}
+
+.navbar,
+.text-primary {
+  color: var(--black) !important;
+}
+
+.navbar button {
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.navbar button:hover {
+  background-color: var(--light-green);
+  color: var(--black);
+}
