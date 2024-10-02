@@ -415,6 +415,13 @@ body {
   cursor: pointer;
 }
 
+.btn-add-food:hover,
+.btn-log-food:hover,
+.btn-remove-item:hover,
+.btn-clear-content:hover {
+  background-color: var(--orange);
+}
+
 .food-log-display {
   overflow-y: auto;
   max-height: 250px;

@@ -65,7 +65,9 @@ function onInit() {
 
 onInit();
 
-// Create weekly calendar
+/**
+ * Create weekly calendar
+ */
 function createWeeklyCalendar() {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const currentDate = new Date();
@@ -156,6 +158,10 @@ function generateDailyRandomMeals() {
   updateCalories(randomMeals);
 }
 
+/**
+ * update the totals for the random data
+ * @param {*} randomMeals
+ */
 function updateCalories(randomMeals) {
   let mealCalories = 0;
   for (const mealType in randomMeals) {
@@ -188,7 +194,9 @@ function updateCalories(randomMeals) {
   }
 }
 
-/*Render the consumption log for the selected date */
+/**
+ * Render the consumption log for the selected date
+ */
 function onSelectDate() {
   const logContainer = document.querySelector(".row-three");
   const weekdayButtons = document.querySelectorAll(".btn-weekday");
@@ -218,7 +226,9 @@ function onSelectDate() {
   });
 }
 
-// Render Meal Log Function
+/**
+ * Render Meal Log Function
+ */
 function renderConsumptionLog() {
   mainContainer.innerHTML = "";
   mainContainer.innerHTML += consumptionReportLog;
@@ -234,7 +244,10 @@ function renderConsumptionLog() {
   });
 }
 
-//Handle AddMealButtons click event
+/**
+ * Handle AddMealButtons click event
+ * @param {*} event
+ */
 function handleAddMealButtons(event) {
   if (event.target.classList.contains("btn-add-meal")) {
     selectedMeal = event.target.classList.contains("lunch")
@@ -250,7 +263,9 @@ function handleAddMealButtons(event) {
   }
 }
 
-//Render the Meal log Page component
+/**
+ * Render the Meal log Page component
+ */
 function renderMealPlanner() {
   currentLocation = "Meal Planner";
   console.log(currentLocation);
@@ -283,21 +298,26 @@ function renderMealPlanner() {
   }
 }
 
-//Handle BrowseAllFoodsButton click event
+/**
+ * Handle BrowseAllFoodsButton click event
+ * @param {*} event
+ */
 function handleBrowseAllFoodsButton(event) {
   if (event.target.classList.contains("btn-browse-all-foods")) {
     displayAllFoods();
   }
 }
 
-//Display all food items
+/**
+ * Display all food items
+ */
 function displayAllFoods() {
   const foodLogDisplay = document.querySelector(".food-log-display");
   foodLogDisplay.innerHTML = "";
 
-  //TODO: need to sort the data alphabetically
+  const sortedData = data.sort((a, b) => a.name.localeCompare(b.name));
 
-  data.forEach((food) => {
+  sortedData.forEach((food) => {
     foodLogDisplay.innerHTML += foodRow({
       name: food.name,
       serving_size: food.serving_size,
@@ -307,14 +327,19 @@ function displayAllFoods() {
   handleAddFoodButtons();
 }
 
-//Handle SearchFoodsButton click event
+/**
+ * Handle SearchFoodsButton click event
+ * @param {*} event
+ */
 function handleSearchFoodsButton(event) {
   if (event.target.classList.contains("btn-search-foods")) {
     displaySearchedFoods();
   }
 }
 
-//Display the searched foods
+/**
+ * Display the searched foods
+ */
 function displaySearchedFoods() {
   const foodLogDisplay = document.querySelector(".food-log-display");
   foodLogDisplay.innerHTML = "";
@@ -333,7 +358,12 @@ function displaySearchedFoods() {
   handleAddFoodButtons();
 }
 
-//search for requested foods inside the data array
+/**
+ * search for requested foods inside the data array
+ * @param {*} query
+ * @returns the results of the search(filtered items)
+ * based on the search criteria
+ */
 function searchFoods(query) {
   if (!query) {
     return data;
@@ -342,7 +372,9 @@ function searchFoods(query) {
   }
 }
 
-//Handle AddFoodButtons to basket click event
+/**
+ * Handle AddFoodButtons to basket click event
+ */
 function handleAddFoodButtons() {
   const btnAddFood = document.querySelectorAll(".btn-add-food");
 
@@ -354,7 +386,10 @@ function handleAddFoodButtons() {
   });
 }
 
-/* Add food items to the basket component */
+/**
+ * Add food items to the basket component
+ * @param {*} food
+ */
 function onAddFoodToBasket(food) {
   if (food != null) {
     let duplicatedFoodItem = foodBasket.find((item) => item.name === food.name);
@@ -376,14 +411,19 @@ function onAddFoodToBasket(food) {
   }
 }
 
-//Handle ButtonCancel click event in Basket component
+/**
+ * Handle ButtonCancel click event in Basket component
+ * @param {*} event
+ */
 function handleButtonBasket(event) {
   if (event.target.classList.contains("btn-food-basket")) {
     displayBasket();
   }
 }
 
-//display Basket component
+/**
+ * display Basket component
+ */
 function displayBasket() {
   currentLocation = "Basket";
   console.log(currentLocation);
@@ -626,7 +666,7 @@ function addAllfoodsToLog(foodArray) {
 }
 
 /**
- * Update nutrient totals
+ * Update nutrient totals for the main functionality
  */
 function updateMainCalorieCounters() {
   let caloriesPerMeal = 0;
@@ -670,6 +710,10 @@ function updateMainCalorieCounters() {
   }
 }
 
+/**
+ * Hels navigating through the calendar days and display
+ * the corresponding components
+ */
 function navigateCalendar() {
   if (currentLocation === "Meal Planner") {
     toggleComponent(".consumption-log", ".meal-log-page");
